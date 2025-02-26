@@ -6,11 +6,11 @@ import {
   TouchableOpacity,
   Alert,
   StyleSheet,
-  Button
+  Button,
 } from "react-native";
 import api from "../axios/axios";
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -47,11 +47,15 @@ export default function Login({navigation}) {
         }}
         style={styles.input}
       />
-      <TouchableOpacity onPress={handleLogin} style={styles.button}>
-        
-        <Text style={styles.buttonText}>Entrar</Text>
+      <TouchableOpacity onPress={handleLogin} style={styles.button_Entrar}>
+        <Text style={styles.text}>Entrar</Text>
       </TouchableOpacity>
-      <Button title="Cadastro" onPress={() => navigation.navigate("Cadastro")}/>
+      <TouchableOpacity
+        style={styles.button_toCadastro}
+        onPress={() => navigation.navigate("Cadastro")}
+      >
+        <Text style={styles.text}>Cadastro</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -71,17 +75,32 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingHorizontal: 10,
   },
-  button: {
+  button_Entrar: {
     backgroundColor: "gray",
-    padding: 10,
-    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#333",
     alignItems: "center",
-    width: "100%",
-    width: 100,
+    margin: 5
+  },
+  button_toCadastro: {
+    backgroundColor: "gray",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#333",
+    alignItems: "center",
+    margin: 5
   },
   title: {
     fontSize: 25,
     fontWeight: "bold",
     marginBottom: 20,
+  },
+  text: {
+    color: "white",
   },
 });

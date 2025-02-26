@@ -74,14 +74,15 @@ export default function Cadastro({ navigation }) {
         }}
         style={styles.input}
       />
-      <TouchableOpacity onPress={handleCadastro} style={styles.button}>
-        <Text style={styles.button}>Entrar</Text>
+      <TouchableOpacity onPress={handleCadastro} style={styles.button_Entrar}>
+        <Text style={styles.text}>Entrar</Text>
       </TouchableOpacity>
-      <Button
-        title="Login"
+      <TouchableOpacity
+        style={styles.button_toLogin}
         onPress={() => navigation.navigate("Login")}
-        style={styles.button}
-      />
+      >
+        <Text style={styles.text}>Login</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -101,12 +102,32 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingHorizontal: 10,
   },
-  button: {
+  button_Entrar: {
     backgroundColor: "gray",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#333",
+    alignItems: "center",
+    margin: 5
+  },
+  button_toLogin: {
+    backgroundColor: "gray",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#333",
+    alignItems: "center",
+    margin: 5
   },
   title: {
     fontSize: 25,
     fontWeight: "bold",
     marginBottom: 20,
+  },
+  text: {
+    color: "white",
   },
 });
