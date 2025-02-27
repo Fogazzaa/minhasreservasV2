@@ -65,15 +65,15 @@ export default function Login({ navigation }) {
             />
             <TouchableOpacity
               onPress={handleLogin}
-              style={styles.button_Entrar}
+              style={styles.buttonEntrar}
             >
-              <Text style={styles.text_button_Entrar}>Entrar</Text>
+              <Text style={styles.textButtonEntrar}>Entrar</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.button_toCadastro}
+              style={styles.buttonToCadastro}
               onPress={() => navigation.navigate("Cadastro")}
             >
-              <Text style={styles.text_button_Cadastro}>Cadastro</Text>
+              <Text style={styles.textButtonToCadastro}>Cadastro</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   container: {
     minHeight: 180,
-    marginVertical: 20,
+    marginVertical: 100,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: "white",
   },
-  button_Entrar: {
+  buttonEntrar: {
     backgroundColor: "rgb(250, 24, 24)",
     paddingVertical: 10,
     paddingHorizontal: 22,
@@ -130,12 +130,12 @@ const styles = StyleSheet.create({
     margin: 5,
     marginBottom: 2,
   },
-  text_button_Entrar: {
+  textButtonEntrar: {
     fontSize: 16,
     color: "white",
     fontWeight: "bold",
   },
-  button_toCadastro: {
+  buttonToCadastro: {
     backgroundColor: "transparent",
     paddingVertical: 5,
     paddingHorizontal: 20,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: "white",
   },
-  text_button_Cadastro: {
+  textButtonToCadastro: {
     fontSize: 15.5,
     color: "rgb(152, 0, 0)",
     fontWeight: 600,

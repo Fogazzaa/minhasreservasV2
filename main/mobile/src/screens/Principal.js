@@ -8,6 +8,7 @@ import {
   Alert,
   StyleSheet,
   ImageBackground,
+  Image,
 } from "react-native";
 
 export default function Principal({ navigation }) {
@@ -19,10 +20,13 @@ export default function Principal({ navigation }) {
     >
       <View style={styles.container}>
         <TouchableOpacity
-          style={styles.button_toHome}
+          style={styles.buttonToHome}
           onPress={() => navigation.navigate("Login")}
         >
-          <Text style={styles.text}>Home</Text>
+          <Image
+            source={require("../img/botaohome.png")}
+            style={styles.imageButtonToHome}
+          />
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -37,21 +41,29 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
     padding: 20,
     backgroundColor: "transparent",
   },
-  button_toHome: {
-    backgroundColor: "gray",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "#333",
+  buttonToHome: {
+    position: "absolute",
+    top: 20,
+    left:20,
+    width: 50,
+    height: 50,
+    backgroundColor: "white",
+    borderRadius: 100,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  imageButtonToHome: {
+    width: 50,
+    justifyContent: "center",
     alignItems: "center",
-    margin: 5,
+    resizeMode: "contain",
   },
   title: {
     fontSize: 25,

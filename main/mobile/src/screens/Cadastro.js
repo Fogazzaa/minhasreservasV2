@@ -74,15 +74,15 @@ export default function Cadastro({ navigation }) {
         />
         <TouchableOpacity
           onPress={handleCadastro}
-          style={styles.button_Cadastrar}
+          style={styles.buttonCadastrar}
         >
-          <Text style={styles.text_button_Cadastrar}>Cadastrar</Text>
+          <Text style={styles.textButtonCadastrar}>Cadastrar</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.button_toLogin}
+          style={styles.buttonToLogin}
           onPress={() => navigation.navigate("Login")}
         >
-          <Text style={styles.text_button_Login}>Login</Text>
+          <Text style={styles.textButtonToLogin}>Login</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
   },
   container: {
     minHeight: 500,
-    marginVertical: 20,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
@@ -126,7 +125,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: "white",
   },
-  button_Cadastrar: {
+  buttonCadastrar: {
     backgroundColor: "rgb(250, 24, 24)",
     paddingVertical: 10,
     paddingHorizontal: 22,
@@ -136,12 +135,12 @@ const styles = StyleSheet.create({
     margin: 5,
     marginBottom: 2,
   },
-  text_button_Cadastrar: {
+  textButtonCadastrar: {
     fontSize: 16,
     color: "white",
     fontWeight: 700,
   },
-  button_toLogin: {
+  buttonToLogin: {
     backgroundColor: "transparent",
     paddingVertical: 5,
     paddingHorizontal: 20,
@@ -151,7 +150,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: "white",
   },
-  text_button_Login: {
+  textButtonToLogin: {
     fontSize: 15.5,
     color: "rgb(152, 0, 0)",
     fontWeight: 600,
