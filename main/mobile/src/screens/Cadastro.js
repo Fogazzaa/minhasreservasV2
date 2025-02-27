@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import {
-  View,
+  Alert,
+  Image,
+  ImageBackground,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  Alert,
-  StyleSheet,
-  ImageBackground,
-  Image,
+  View,
 } from "react-native";
 import api from "../axios/axios";
 
@@ -34,12 +34,12 @@ export default function Cadastro({ navigation }) {
   }
   return (
     <ImageBackground
-      source={require("../img/fundo.png")}
+      source={require("../../img/fundo.png")}
       style={styles.background}
       resizeMode="cover"
     >
       <View style={styles.container}>
-        <Image source={require("../img/logo.png")} style={styles.logo} />
+        <Image source={require("../../img/logo.png")} style={styles.logo} />
         <TextInput
           placeholder=" nome"
           value={usuario.nome}

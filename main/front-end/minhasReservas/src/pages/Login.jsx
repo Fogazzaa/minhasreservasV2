@@ -1,14 +1,12 @@
-import * as React from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import * as React from "react";
 import { useState } from "react";
-import api from "../axios/axios";
 import { Link, useNavigate } from "react-router-dom";
+import api from "../axios/axios";
 
 function Login() {
   const [usuario, setUsuario] = useState({
@@ -45,20 +43,12 @@ function Login() {
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          mt: 20,
+          mt: 25,
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
         }}
       >
-        <Avatar
-          sx={{
-            margin: 1,
-            backgroundColor: "#000000",
-          }}
-        >
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography component="h1" variant="h5">
           Login - Reservas
         </Typography>

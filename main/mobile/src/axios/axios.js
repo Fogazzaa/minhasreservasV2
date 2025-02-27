@@ -12,4 +12,4 @@ const sheets = {
   postCadastro: (usuario) => api.post("cadastro/", usuario),
 };
 
-export default sheets
+export default sheets;

@@ -1,12 +1,12 @@
-import * as React from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import * as React from "react";
 import { useState } from "react";
-import api from "../axios/axios";
 import { Link, useNavigate } from "react-router-dom";
+import api from "../axios/axios";
 
 function Cadastro() {
   const [usuario, setUsuario] = useState({

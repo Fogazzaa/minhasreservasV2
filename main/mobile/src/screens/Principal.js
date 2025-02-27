@@ -1,20 +1,16 @@
-import api from "../axios/axios";
-import React, { useState } from "react";
+import React from "react";
 import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-  StyleSheet,
-  ImageBackground,
   Image,
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+  View
 } from "react-native";
 
 export default function Principal({ navigation }) {
   return (
     <ImageBackground
-      source={require("../img/fundo.png")}
+      source={require("../../img/fundo.png")}
       style={styles.background}
       resizeMode="cover"
     >
@@ -24,7 +20,7 @@ export default function Principal({ navigation }) {
           onPress={() => navigation.navigate("Login")}
         >
           <Image
-            source={require("../img/botaohome.png")}
+            source={require("../../img/botaohome.png")}
             style={styles.imageButtonToHome}
           />
         </TouchableOpacity>
