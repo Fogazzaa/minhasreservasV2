@@ -6,21 +6,19 @@ import {
   TouchableOpacity,
   Alert,
   StyleSheet,
-  Button,
 } from "react-native";
 import api from "../axios/axios";
 
 export default function Cadastro({ navigation }) {
-  const [user, setUser] = useState({
-    name: "",
-    cpf: "",
-    data_nascimento: "",
+  const [usuario, setUsuario] = useState({
+    nome: "",
     email: "",
-    password: "",
+    NIF: "",
+    senha: "",
   });
 
   async function handleCadastro() {
-    await api.postCadastro(user).then(
+    await api.postCadastro(usuario).then(
       (response) => {
         console.log(response.data.message);
         Alert.alert("OK", response.data.message);
@@ -36,41 +34,33 @@ export default function Cadastro({ navigation }) {
       <Text style={styles.title}>Faça Cadastro</Text>
       <TextInput
         placeholder="Nome"
-        value={user.name}
+        value={usuario.nome}
         onChangeText={(value) => {
-          setUser({ ...user, name: value });
+          setUsuario({ ...usuario, nome: value });
         }}
         style={styles.input}
       />
       <TextInput
         placeholder="E-mail"
-        value={user.email}
+        value={usuario.email}
         onChangeText={(value) => {
-          setUser({ ...user, email: value });
+          setUsuario({ ...usuario, email: value });
         }}
         style={styles.input}
       />
       <TextInput
-        placeholder="CPF"
-        value={user.cpf}
+        placeholder="NIF"
+        value={usuario.NIF}
         onChangeText={(value) => {
-          setUser({ ...user, cpf: value });
-        }}
-        style={styles.input}
-      />
-      <TextInput
-        placeholder="Data de Nascimento"
-        value={user.data_nascimento}
-        onChangeText={(value) => {
-          setUser({ ...user, data_nascimento: value });
+          setUsuario({ ...usuario, NIF: value });
         }}
         style={styles.input}
       />
       <TextInput
         placeholder="Senha"
-        value={user.password}
+        value={usuario.senha}
         onChangeText={(value) => {
-          setUser({ ...user, password: value });
+          setUsuario({ ...usuario, senha: value });
         }}
         style={styles.input}
       />
@@ -110,7 +100,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#333",
     alignItems: "center",
-    margin: 5
+    margin: 5,
   },
   button_toLogin: {
     backgroundColor: "gray",
@@ -120,7 +110,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#333",
     alignItems: "center",
-    margin: 5
+    margin: 5,
   },
   title: {
     fontSize: 25,

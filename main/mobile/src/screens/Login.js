@@ -6,18 +6,17 @@ import {
   TouchableOpacity,
   Alert,
   StyleSheet,
-  Button,
 } from "react-native";
 import api from "../axios/axios";
 
 export default function Login({ navigation }) {
-  const [user, setUser] = useState({
+  const [usuario, setUsuario] = useState({
     email: "",
-    password: "",
+    senha: "",
   });
 
   async function handleLogin() {
-    await api.postLogin(user).then(
+    await api.postLogin(usuario).then(
       (response) => {
         console.log(response.data.message);
         Alert.alert("OK", response.data.message);
@@ -33,17 +32,17 @@ export default function Login({ navigation }) {
       <Text style={styles.title}>Faça Login</Text>
       <TextInput
         placeholder="E-mail"
-        value={user.email}
+        value={usuario.email}
         onChangeText={(value) => {
-          setUser({ ...user, email: value });
+          setUsuario({ ...usuario, email: value });
         }}
         style={styles.input}
       />
       <TextInput
         placeholder="Senha"
-        value={user.password}
+        value={usuario.senha}
         onChangeText={(value) => {
-          setUser({ ...user, password: value });
+          setUsuario({ ...usuario, senha: value });
         }}
         style={styles.input}
       />
@@ -83,7 +82,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#333",
     alignItems: "center",
-    margin: 5
+    margin: 5,
   },
   button_toCadastro: {
     backgroundColor: "gray",
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#333",
     alignItems: "center",
-    margin: 5
+    margin: 5,
   },
   title: {
     fontSize: 25,
