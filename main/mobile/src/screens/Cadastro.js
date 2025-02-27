@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   container: {
-    flex: 0.55,
+    minHeight: 500,
+    marginVertical: 20,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
@@ -109,12 +110,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     resizeMode: "contain",
     width: 210,
-    height: 50,
+    height: 55,
     marginBottom: 30,
     marginTop: 18,
     borderRadius: 8,
     borderColor: "white",
-    borderWidth: 3,
+    borderWidth: 4,
   },
   input: {
     width: 250,
@@ -133,15 +134,12 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     alignItems: "center",
     margin: 5,
+    marginBottom: 2,
   },
   text_button_Cadastrar: {
     fontSize: 16,
     color: "white",
-  },
-  text_button_Login: {
-    fontSize: 15.5,
-    color: "rgb(152, 0, 0)",
-    textDecorationLine: "underline",
+    fontWeight: 700,
   },
   button_toLogin: {
     backgroundColor: "transparent",
@@ -152,6 +150,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 10,
     color: "white",
+  },
+  text_button_Login: {
+    fontSize: 15.5,
+    color: "rgb(152, 0, 0)",
+    fontWeight: 600,
+    borderBottomWidth: 1.3,
+    borderBottomColor: "rgb(152, 0, 0)",
   },
   text: {
     color: "white",

@@ -8,6 +8,10 @@ import {
   StyleSheet,
   ImageBackground,
   Image,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import api from "../axios/axios";
 
@@ -36,34 +40,44 @@ export default function Login({ navigation }) {
       style={styles.background}
       resizeMode="cover"
     >
-      <View style={styles.container}>
-        <Image source={require("../img/logo.png")} style={styles.logo} />
-        <TextInput
-          placeholder="e-mail"
-          value={usuario.email}
-          onChangeText={(value) => {
-            setUsuario({ ...usuario, email: value });
-          }}
-          style={styles.input}
-        />
-        <TextInput
-          placeholder="senha"
-          value={usuario.senha}
-          onChangeText={(value) => {
-            setUsuario({ ...usuario, senha: value });
-          }}
-          style={styles.input}
-        />
-        <TouchableOpacity onPress={handleLogin} style={styles.button_Entrar}>
-          <Text style={styles.text_button_Entrar}>Entrar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button_toCadastro}
-          onPress={() => navigation.navigate("Cadastro")}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={{ flex: 1 }}
         >
-          <Text style={styles.text_button_Cadastro}>Cadastro</Text>
-        </TouchableOpacity>
-      </View>
+          <View style={styles.container}>
+            <Image source={require("../img/logo.png")} style={styles.logo} />
+            <TextInput
+              placeholder=" e-mail"
+              value={usuario.email}
+              onChangeText={(value) => {
+                setUsuario({ ...usuario, email: value });
+              }}
+              style={styles.input}
+            />
+            <TextInput
+              placeholder=" senha"
+              value={usuario.senha}
+              onChangeText={(value) => {
+                setUsuario({ ...usuario, senha: value });
+              }}
+              style={styles.input}
+            />
+            <TouchableOpacity
+              onPress={handleLogin}
+              style={styles.button_Entrar}
+            >
+              <Text style={styles.text_button_Entrar}>Entrar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button_toCadastro}
+              onPress={() => navigation.navigate("Cadastro")}
+            >
+              <Text style={styles.text_button_Cadastro}>Cadastro</Text>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     </ImageBackground>
   );
 }
@@ -75,25 +89,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   container: {
-    flex: 0.39,
+    minHeight: 180,
+    marginVertical: 20,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
     padding: 30,
     backgroundColor: "rgba(255, 238, 238, 0.82)",
     borderRadius: 50,
+    marginTop: 220,
   },
   logo: {
     justifyContent: "center",
     alignItems: "center",
     resizeMode: "contain",
-    width: 200,
-    height: 50,
+    width: 205,
+    height: 55,
     marginBottom: 25,
-    marginTop: 18,
+    marginTop: 16,
     borderRadius: 8,
     borderColor: "white",
-    borderWidth: 3,
+    borderWidth: 4,
   },
   input: {
     width: 250,
@@ -112,15 +128,12 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     alignItems: "center",
     margin: 5,
+    marginBottom: 2,
   },
   text_button_Entrar: {
     fontSize: 16,
     color: "white",
-  },
-  text_button_Cadastro: {
-    fontSize: 15.5,
-    color: "rgb(152, 0, 0)",
-    textDecorationLine: "underline",
+    fontWeight: "bold",
   },
   button_toCadastro: {
     backgroundColor: "transparent",
@@ -131,6 +144,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 10,
     color: "white",
+  },
+  text_button_Cadastro: {
+    fontSize: 15.5,
+    color: "rgb(152, 0, 0)",
+    fontWeight: 600,
+    borderBottomWidth: 1.3,
+    borderBottomColor: "rgb(152, 0, 0)",
   },
   text: {
     color: "white",
