@@ -8,7 +8,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import api from "../axios/axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [usuario, setUsuario] = useState({
@@ -26,14 +26,19 @@ function Login() {
     Login();
   };
 
+  const navigate = useNavigate();
+
   async function Login() {
-    await api.postLogin(usuario).then((response) => {
-      alert(response.data.message)
-    },
-  (error)=>{
-    console.log(error)
-    alert(error.response.data.error)
-  });
+    await api.postLogin(usuario).then(
+      (response) => {
+        alert(response.data.message);
+        navigate("/principal");
+      },
+      (error) => {
+        console.log(error);
+        alert(error.response.data.error);
+      }
+    );
   }
 
   return (

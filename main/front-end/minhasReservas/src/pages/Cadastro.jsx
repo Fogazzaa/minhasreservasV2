@@ -1,14 +1,12 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import api from "../axios/axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Cadastro() {
   const [usuario, setUsuario] = useState({
@@ -28,10 +26,13 @@ function Cadastro() {
     Cadastro();
   };
 
+  const navigate = useNavigate();
+
   async function Cadastro() {
     await api.postCadastro(usuario).then(
       (response) => {
         alert(response.data.message);
+        navigate("/principal");
       },
       (error) => {
         console.log(error);
@@ -44,27 +45,19 @@ function Cadastro() {
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          mt: 8,
+          mt: 18,
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
         }}
       >
-        <Avatar
-          sx={{
-            margin: 1,
-            backgroundColor: "#000000",
-          }}
-        >
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography component="h1" variant="h5">
           Cadastro - Reservas
         </Typography>
         <Box
           component="form"
           sx={{
-            mt: 1,
+            mt: 3,
           }}
           onSubmit={handleSubmit}
           noValidate
