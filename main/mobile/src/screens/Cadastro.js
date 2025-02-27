@@ -22,6 +22,7 @@ export default function Cadastro({ navigation }) {
       (response) => {
         console.log(response.data.message);
         Alert.alert("OK", response.data.message);
+        navigation.navigate("Principal");
       },
       (error) => {
         Alert.alert("Erro", error.response.data.error);
@@ -33,7 +34,7 @@ export default function Cadastro({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>Faça Cadastro</Text>
       <TextInput
-        placeholder="Nome"
+        placeholder="nome"
         value={usuario.nome}
         onChangeText={(value) => {
           setUsuario({ ...usuario, nome: value });
@@ -41,7 +42,7 @@ export default function Cadastro({ navigation }) {
         style={styles.input}
       />
       <TextInput
-        placeholder="E-mail"
+        placeholder="e-mail"
         value={usuario.email}
         onChangeText={(value) => {
           setUsuario({ ...usuario, email: value });
@@ -57,7 +58,7 @@ export default function Cadastro({ navigation }) {
         style={styles.input}
       />
       <TextInput
-        placeholder="Senha"
+        placeholder="senha"
         value={usuario.senha}
         onChangeText={(value) => {
           setUsuario({ ...usuario, senha: value });

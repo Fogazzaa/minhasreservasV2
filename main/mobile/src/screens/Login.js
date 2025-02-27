@@ -20,6 +20,7 @@ export default function Login({ navigation }) {
       (response) => {
         console.log(response.data.message);
         Alert.alert("OK", response.data.message);
+        navigation.navigate("Principal");
       },
       (error) => {
         Alert.alert("Erro", error.response.data.error);
@@ -31,7 +32,7 @@ export default function Login({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>Faça Login</Text>
       <TextInput
-        placeholder="E-mail"
+        placeholder="e-mail"
         value={usuario.email}
         onChangeText={(value) => {
           setUsuario({ ...usuario, email: value });
@@ -39,7 +40,7 @@ export default function Login({ navigation }) {
         style={styles.input}
       />
       <TextInput
-        placeholder="Senha"
+        placeholder="senha"
         value={usuario.senha}
         onChangeText={(value) => {
           setUsuario({ ...usuario, senha: value });
