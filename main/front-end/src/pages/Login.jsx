@@ -103,16 +103,16 @@ function Login() {
             required
             fullWidth
             id="email"
-            placeholder="e-mail"
+            placeholder=" e-mail"
             name="email"
             margin="normal"
             value={usuario.email}
             onChange={onChange}
             sx={{
               "& .MuiOutlinedInput-root": {
-                "& fieldset": { border: "none" }, // Remove a borda no modo padrão
-                "&:hover fieldset": { border: "none" }, // Remove a borda ao passar o mouse
-                "&.Mui-focused fieldset": { border: "none" }, // Remove a borda ao focar
+                "& fieldset": { border: "none" },
+                "&:hover fieldset": { border: "none" },
+                "&.Mui-focused fieldset": { border: "none" },
               },
               width: "35vh",
               height: "5.5vh",
@@ -126,7 +126,7 @@ function Login() {
             required
             fullWidth
             id="senha"
-            placeholder="senha"
+            placeholder=" senha"
             name="senha"
             type="password"
             margin="normal"
@@ -167,16 +167,16 @@ function Login() {
               mt: 4,
               color: "white",
               backgroundColor: "rgba(255, 0, 0, 1)",
-              width: 130,
+              width: 100,
               height: 45,
               fontWeight: 600,
-              fontSize: 15,
+              fontSize: 14.5,
               borderRadius:15
             }}
             type="submit"
             variant="contained"
           >
-            Entrar
+            Login
           </Button>
           <Button
             component={Link}
