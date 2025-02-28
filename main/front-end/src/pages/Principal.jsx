@@ -17,7 +17,7 @@ function Principal() {
           display: "flex",
         }}
         fullWidth
-        type="submit"
+        type="submit"    
         variant="contained"
       >
         Home

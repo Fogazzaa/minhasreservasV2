@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import api from "../axios/axios";
+import api from "../services/axios";
 
 export default function Cadastro({ navigation }) {
   const [usuario, setUsuario] = useState({

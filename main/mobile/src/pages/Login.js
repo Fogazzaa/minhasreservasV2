@@ -13,7 +13,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import api from "../axios/axios";
+import api from "../services/axios";
 
 export default function Login({ navigation }) {
   const [usuario, setUsuario] = useState({
@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
     marginVertical: 100,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
     padding: 30,
     backgroundColor: "rgba(255, 238, 238, 0.82)",
     borderRadius: 50,
