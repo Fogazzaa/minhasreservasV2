@@ -67,13 +67,13 @@ export default function Login({ navigation }) {
               onPress={handleLogin}
               style={styles.buttonEntrar}
             >
-              <Text style={styles.textButtonEntrar}>Entrar</Text>
+              <Text style={styles.textButtonEntrar}>Login</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonToCadastro}
               onPress={() => navigation.navigate("Cadastro")}
             >
-              <Text style={styles.textButtonToCadastro}>Cadastro</Text>
+              <Text style={styles.textButtonToCadastro}>Cadastre-se</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>

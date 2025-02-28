@@ -76,11 +76,11 @@ function Login() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            backgroundColor: "rgba(255, 238, 238, 0.62)",
+            backgroundColor: "rgba(255, 255, 255, 0.7)",
             paddingRight: 6,
             paddingLeft: 6,
             paddingTop: 9,
-            paddingBottom: 6,
+            paddingBottom: 5,
             borderRadius: 10,
           }}
           onSubmit={handleSubmit}
@@ -114,6 +114,10 @@ function Login() {
                 "&:hover fieldset": { border: "none" },
                 "&.Mui-focused fieldset": { border: "none" },
               },
+              "& input::placeholder": {
+                fontSize: "17px",
+                color: "black",
+              },
               width: "35vh",
               height: "5.5vh",
               backgroundColor: "white",
@@ -138,6 +142,10 @@ function Login() {
                 "&:hover fieldset": { border: "none" },
                 "&.Mui-focused fieldset": { border: "none" },
               },
+              "& input::placeholder": {
+                fontSize: "17px",
+                color: "black",
+              },
               width: "35vh",
               height: "5.5vh",
               backgroundColor: "white",
@@ -145,9 +153,10 @@ function Login() {
               border: "none",
               boxShadow: "none",
               borderRadius: 10,
-              mt:3
+              mt: 3,
             }}
           />
+
           <Button
             sx={{
               "&.MuiButton-root": {
@@ -167,11 +176,12 @@ function Login() {
               mt: 4,
               color: "white",
               backgroundColor: "rgba(255, 0, 0, 1)",
-              width: 100,
+              width: 85,
               height: 45,
               fontWeight: 600,
-              fontSize: 14.5,
-              borderRadius:15
+              fontSize: 15,
+              borderRadius: 15,
+              textTransform: "none"
             }}
             type="submit"
             variant="contained"
@@ -185,11 +195,12 @@ function Login() {
               color: "rgb(152, 0, 0)",
               backgroundColor: "transparent",
               fontWeight: "bold",
-              fontSize: 14,
+              fontSize: 15.5,
               textDecoration: "underline",
               textDecorationThickness: "1.5px",
               textUnderlineOffset: "4px",
               mt: 2,
+              textTransform: "none",
               "&:hover": {
                 textDecoration: "underline",
                 backgroundColor: "transparent",

@@ -76,7 +76,7 @@ export default function Cadastro({ navigation }) {
           onPress={handleCadastro}
           style={styles.buttonCadastrar}
         >
-          <Text style={styles.textButtonCadastrar}>Cadastrar</Text>
+          <Text style={styles.textButtonCadastrar}>Cadastrar-se</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttonToLogin}
@@ -111,10 +111,10 @@ const styles = StyleSheet.create({
     width: 210,
     height: 55,
     marginBottom: 30,
-    marginTop: 18,
+    marginTop: 16,
     borderRadius: 8,
     borderColor: "white",
-    borderWidth: 4,
+    borderWidth: 5,
   },
   input: {
     width: 250,
