@@ -72,15 +72,15 @@ function Login() {
         <Box
           component="form"
           sx={{
-            mt: 18,
+            mt: 12,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             backgroundColor: "rgba(255, 238, 238, 0.62)",
-            paddingRight: 10,
-            paddingLeft: 10,
-            paddingTop: 11,
-            paddingBottom: 5,
+            paddingRight: 6,
+            paddingLeft: 6,
+            paddingTop: 9,
+            paddingBottom: 6,
             borderRadius: 10,
           }}
           onSubmit={handleSubmit}
@@ -91,10 +91,10 @@ function Login() {
             src={logo}
             alt="Logo"
             sx={{
-              width: "300px",
+              width: "280px",
               height: "auto",
-              mb: 3,
-              border: 6,
+              mb: 4,
+              border: 7,
               borderColor: "white",
               borderRadius: 4,
             }}
@@ -145,6 +145,7 @@ function Login() {
               border: "none",
               boxShadow: "none",
               borderRadius: 10,
+              mt:3
             }}
           />
           <Button
@@ -163,12 +164,14 @@ function Login() {
                   boxShadow: "none",
                 },
               },
-              mt: 3,
+              mt: 4,
               color: "white",
               backgroundColor: "rgba(255, 0, 0, 1)",
-              width: 120,
-              fontWeight: 550,
-              fontSize: 14,
+              width: 130,
+              height: 45,
+              fontWeight: 600,
+              fontSize: 15,
+              borderRadius:15
             }}
             type="submit"
             variant="contained"
@@ -204,7 +207,7 @@ function Login() {
             type="submit"
             variant="text"
           >
-            Cadastro
+            Cadastre-se
           </Button>
         </Box>
       </Box>
