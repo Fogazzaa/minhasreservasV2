@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import home from "../../img/botaohome.png";
+import home from "../../img/iconehome.png";
 import logo from "../../img/logo.png";
 import api from "../services/axios";
 
