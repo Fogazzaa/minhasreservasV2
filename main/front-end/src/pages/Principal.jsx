@@ -14,6 +14,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
 
 function Principal() {
   const styles = getStyles();
@@ -59,7 +60,7 @@ function Principal() {
     <Container sx={styles.container}>
       <Box sx={styles.header}>
         <img src={logo} alt="Logo" style={styles.logo} />
-        <Button component={Link} to="/login" sx={styles.buttonHome}>
+        <Button component={Link} to="/home" sx={styles.buttonHome}>
           <img
             src={logout}
             alt="Logout"
@@ -91,7 +92,11 @@ function Principal() {
           <TableBody sx={styles.tableBody}>{listSalas}</TableBody>
         </Table>
       </TableContainer>
-      <Box sx={styles.footer}></Box>
+      <Box sx={styles.footer}>
+        <Typography sx={styles.footerText}>
+          &copy; Desenvolvido por: Vinicius Fogaça, Maria Júlia e Maria Fernanda
+        </Typography>
+      </Box>
     </Container>
   );
 }
@@ -128,7 +133,6 @@ function getStyles() {
     },
 
     buttonHome: {
-      color: "white",
       mr: 4,
     },
     tableContainer: {
@@ -171,11 +175,15 @@ function getStyles() {
     footer: {
       backgroundColor: "rgba(177, 16, 16, 1)",
       width: "192vh",
-      height: "6vh",
+      height: "7vh",
       display: "flex",
       alignItems: "center",
-      justifyContent: "end",
+      justifyContent: "center",
       borderTop: "5px solid white",
+    },
+    footerText: {
+      color: "white",
+      fontSize: 18,
     },
   };
 }

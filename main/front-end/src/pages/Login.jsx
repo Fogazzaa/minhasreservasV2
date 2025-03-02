@@ -2,9 +2,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import home from "../../img/botaohome.png";
 import logo from "../../img/logo.png";
 import api from "../services/axios";
 
@@ -38,7 +40,15 @@ function Login() {
 
   return (
     <Container component="main" sx={styles.container}>
-      <Box sx={styles.boxContainer}>
+      <Box sx={styles.header}>
+        <Button component={Link} to="/home" sx={styles.buttonHome}>
+          <img
+            src={home}
+            alt="Home"
+            style={{ width: "70px", height: "70px" }}
+          />
+        </Button>
+      </Box>
         <Box
           component="form"
           sx={styles.form}
@@ -81,6 +91,10 @@ function Login() {
             Cadastre-se
           </Button>
         </Box>
+      <Box sx={styles.footer}>
+        <Typography sx={styles.footerText}>
+          &copy; Desenvolvido por: Vinicius Fogaça, Maria Júlia e Maria Fernanda
+        </Typography>
       </Box>
     </Container>
   );
@@ -89,31 +103,32 @@ function Login() {
 function getStyles() {
   return {
     container: {
-      mt: -1,
-      mb: -1,
-      ml: -1,
-      mr: -1,
       backgroundImage: `url(../../img/fundo.png)`,
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      height: "100vh",
-      width: "300vh",
+      height: "auto",
+      width: "100%",
       display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      minHeight: "100.8vh",
-      maxHeight: "100vh",
-      minWidth: "100.85%",
-    },
-    boxContainer: {
-      mt: -10,
-      display: "flex",
-      alignItems: "center",
       flexDirection: "column",
+      alignItems: "center",
+      minHeight: "100vh",
+      minWidth: "100%",
+    },
+    header: {
+      backgroundColor: "rgba(177, 16, 16, 1)",
+      width: "195vh",
+      height: "11vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "end",
+      borderBottom: "5px solid white",
+    },
+    buttonHome: {
+      mr: 4,
     },
     form: {
-      mt: 12,
+      mt:18,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -128,7 +143,7 @@ function getStyles() {
       width: "280px",
       height: "auto",
       mb: 4,
-      border: 7,
+      border: 5,
       borderColor: "white",
       borderRadius: 4,
     },
@@ -183,6 +198,20 @@ function getStyles() {
         backgroundColor: "transparent",
         color: "rgb(167, 63, 63)",
       },
+    },
+    footer: {
+      mt:17.5,
+      backgroundColor: "rgba(177, 16, 16, 1)",
+      width: "195vh",
+      height: "7vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      borderTop: "5px solid white",
+    },
+    footerText: {
+      color: "white",
+      fontSize: 18,
     },
   };
 }
