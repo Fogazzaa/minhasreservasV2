@@ -42,49 +42,11 @@ function Cadastro() {
   }
 
   return (
-    <Container
-      component="main"
-      sx={{
-        mt: -1,
-        mb: -1,
-        ml: -1,
-        mr: -1,
-        backgroundImage: `url(../../img/fundo.png)`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        height: "100vh",
-        width: "300vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "100vh",
-        maxHeight: "100vh",
-        minWidth: "100.85%",
-      }}
-    >
-      <Box
-        sx={{
-          mt: -10,
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
+    <Container component="main" sx={styles.container}>
+      <Box sx={styles.boxWrapper}>
         <Box
           component="form"
-          sx={{
-            mt: 12,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            backgroundColor: "rgba(255, 255, 255, 0.7)",
-            paddingRight: 6,
-            paddingLeft: 6,
-            paddingTop: 9,
-            paddingBottom: 5,
-            borderRadius: 10,
-          }}
+          sx={styles.formBox}
           onSubmit={handleSubmit}
           noValidate
         >
@@ -110,23 +72,7 @@ function Cadastro() {
             margin="normal"
             value={usuario.nome}
             onChange={onChange}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": { border: "none" },
-                "&:hover fieldset": { border: "none" },
-                "&.Mui-focused fieldset": { border: "none" },
-              },
-              "& input::placeholder": {
-                fontSize: "17px",
-                color: "black",
-              },
-              width: "35vh",
-              height: "5.5vh",
-              backgroundColor: "white",
-              display: "flex",
-              border: "0px transparent",
-              borderRadius: 10,
-            }}
+            sx={styles.textField}
           />
           <TextField
             required
@@ -137,23 +83,7 @@ function Cadastro() {
             margin="normal"
             value={usuario.email}
             onChange={onChange}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": { border: "none" },
-                "&:hover fieldset": { border: "none" },
-                "&.Mui-focused fieldset": { border: "none" },
-              },
-              "& input::placeholder": {
-                fontSize: "17px",
-                color: "black",
-              },
-              width: "35vh",
-              height: "5.5vh",
-              backgroundColor: "white",
-              display: "flex",
-              border: "0px transparent",
-              borderRadius: 10,
-            }}
+            sx={styles.textField}
           />
           <TextField
             required
@@ -164,23 +94,7 @@ function Cadastro() {
             margin="normal"
             value={usuario.NIF}
             onChange={onChange}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": { border: "none" },
-                "&:hover fieldset": { border: "none" },
-                "&.Mui-focused fieldset": { border: "none" },
-              },
-              "& input::placeholder": {
-                fontSize: "17px",
-                color: "black",
-              },
-              width: "35vh",
-              height: "5.5vh",
-              backgroundColor: "white",
-              display: "flex",
-              border: "0px transparent",
-              borderRadius: 10,
-            }}
+            sx={styles.textField}
           />
           <TextField
             required
@@ -188,88 +102,20 @@ function Cadastro() {
             id="senha"
             placeholder="  senha"
             name="senha"
-            type="senha"
+            type="password"
             margin="normal"
             value={usuario.senha}
             onChange={onChange}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": { border: "none" },
-                "&:hover fieldset": { border: "none" },
-                "&.Mui-focused fieldset": { border: "none" },
-              },
-              "& input::placeholder": {
-                fontSize: "17px",
-                color: "black",
-              },
-              width: "35vh",
-              height: "5.5vh",
-              backgroundColor: "white",
-              display: "flex",
-              border: "0px transparent",
-              borderRadius: 10,
-            }}
+            sx={styles.textField}
           />
-          <Button
-            sx={{
-              "&.MuiButton-root": {
-                border: "none",
-                boxShadow: "none",
-                "&:hover": {
-                  border: "none",
-                  backgroundColor: "rgba(255, 0, 0, 0.55)",
-                },
-                "&:focus": { border: "none", outline: "none" },
-                "&:active": {
-                  border: "none",
-                  outline: "none",
-                  boxShadow: "none",
-                },
-              },
-              mt: 4,
-              color: "white",
-              backgroundColor: "rgba(255, 0, 0, 1)",
-              width: 135,
-              height: 45,
-              fontWeight: 600,
-              fontSize: 15,
-              borderRadius: 15,
-              textTransform: "none",
-            }}
-            type="submit"
-            variant="contained"
-          >
+          <Button type="submit" variant="contained" sx={styles.buttonCadastro}>
             Cadastrar-se
           </Button>
           <Button
             component={Link}
             to="/login"
-            sx={{
-              color: "rgb(152, 0, 0)",
-              backgroundColor: "transparent",
-              fontWeight: "bold",
-              fontSize: 15.5,
-              textDecoration: "underline",
-              textDecorationThickness: "1.5px",
-              textUnderlineOffset: "4px",
-              mt: 2,
-              textTransform: "none",
-              "&:hover": {
-                textDecoration: "underline",
-                backgroundColor: "transparent",
-                textDecorationThickness: "1.5px",
-                textUnderlineOffset: "4px",
-                color: "rgb(167, 63, 63)",
-              },
-              "&:focus": {
-                textDecoration: "underline",
-              },
-              "&:active": {
-                textDecoration: "underline",
-              },
-            }}
-            type="submit"
             variant="text"
+            sx={styles.buttonLogin}
           >
             Login
           </Button>
@@ -278,5 +124,106 @@ function Cadastro() {
     </Container>
   );
 }
+
+const styles = {
+  container: {
+    mt: -1,
+    mb: -1,
+    ml: -1,
+    mr: -1,
+    backgroundImage: `url(../../img/fundo.png)`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    height: "100vh",
+    width: "300vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "100.8vh",
+    maxHeight: "100vh",
+    minWidth: "100.85%",
+  },
+  boxWrapper: {
+    mt: -10,
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  formBox: {
+    mt: 12,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
+    paddingRight: 6,
+    paddingLeft: 6,
+    paddingTop: 9,
+    paddingBottom: 5,
+    borderRadius: 10,
+  },
+  textField: {
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": { border: "none" },
+      "&:hover fieldset": { border: "none" },
+      "&.Mui-focused fieldset": { border: "none" },
+    },
+    "& input::placeholder": {
+      fontSize: "17px",
+      color: "black",
+    },
+    width: "35vh",
+    height: "5.5vh",
+    backgroundColor: "white",
+    display: "flex",
+    border: "0px transparent",
+    borderRadius: 10,
+  },
+  buttonCadastro: {
+    "&.MuiButton-root": {
+      border: "none",
+      boxShadow: "none",
+      "&:hover": {
+        border: "none",
+        backgroundColor: "rgba(255, 0, 0, 0.55)",
+      },
+      "&:focus": { border: "none", outline: "none" },
+      "&:active": {
+        border: "none",
+        outline: "none",
+        boxShadow: "none",
+      },
+    },
+    mt: 4,
+    color: "white",
+    backgroundColor: "rgba(255, 0, 0, 1)",
+    width: 135,
+    height: 45,
+    fontWeight: 600,
+    fontSize: 15,
+    borderRadius: 15,
+    textTransform: "none",
+  },
+  buttonLogin: {
+    color: "rgb(152, 0, 0)",
+    backgroundColor: "transparent",
+    fontWeight: "bold",
+    fontSize: 15.5,
+    textDecoration: "underline",
+    textDecorationThickness: "1.5px",
+    textUnderlineOffset: "4px",
+    mt: 2,
+    textTransform: "none",
+    "&:hover": {
+      textDecoration: "underline",
+      backgroundColor: "transparent",
+      textDecorationThickness: "1.5px",
+      textUnderlineOffset: "4px",
+      color: "rgb(167, 63, 63)",
+    },
+    "&:focus": { textDecoration: "underline" },
+    "&:active": { textDecoration: "underline" },
+  },
+};
 
 export default Cadastro;

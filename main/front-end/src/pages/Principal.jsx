@@ -1,17 +1,22 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import logout from "../../img/iconelogout.png";
+import logo from "../../img/logo.png";
 import api from "../services/axios";
 
-import Table from "@mui/material/Table";
-import TableContainer from "@mui/material/TableContainer";
-
-import TableHead from "@mui/material/TableHead";
-
-import TableBody from "@mui/material/TableBody";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 
 function Principal() {
+  const styles = getStyles();
   const [salas, setSalas] = useState([]);
 
   async function getSalas() {
@@ -26,41 +31,153 @@ function Principal() {
     );
   }
 
-  const listSalas = salas.map((sala) => {
-    return (
-      <TableRow key={sala.id_sala}>
-        <TableCell align="center">{sala.nome}</TableCell>
-        <TableCell align="center">{sala.descricao}</TableCell>
-        <TableCell align="center">{sala.bloco}</TableCell>
-        <TableCell align="center">{sala.tipo}</TableCell>
-        <TableCell align="center">{sala.capacidade}</TableCell>
-      </TableRow>
-    );
-  });
-
   useEffect(() => {
     getSalas();
   }, []);
 
+  const listSalas = salas.map((sala) => (
+    <TableRow key={sala.id_sala}>
+      <TableCell align="center" sx={styles.tableBodyCell}>
+        {sala.nome}
+      </TableCell>
+      <TableCell align="center" sx={styles.tableBodyCell}>
+        {sala.descricao}
+      </TableCell>
+      <TableCell align="center" sx={styles.tableBodyCell}>
+        {sala.bloco}
+      </TableCell>
+      <TableCell align="center" sx={styles.tableBodyCell}>
+        {sala.tipo}
+      </TableCell>
+      <TableCell align="center" sx={styles.tableBodyCell}>
+        {sala.capacidade}
+      </TableCell>
+    </TableRow>
+  ));
+
   return (
-    <div>
-      <h5>Lista de salas</h5>
-      <TableContainer component={Paper} style={{ margin: "2px" }}>
-        <Table size="small">
-          <TableHead style={{ backgroundColor: "gray", border: "solid" }}>
-            <TableRow>
-              <TableCell align="center">Nome</TableCell>
-              <TableCell align="center">Descrição</TableCell>
-              <TableCell align="center">Bloco</TableCell>
-              <TableCell align="center">Tipo</TableCell>
-              <TableCell align="center">Capacidade</TableCell>
+    <Container sx={styles.container}>
+      <Box sx={styles.header}>
+        <img src={logo} alt="Logo" style={styles.logo} />
+        <Button component={Link} to="/login" sx={styles.buttonHome}>
+          <img
+            src={logout}
+            alt="Logout"
+            style={{ width: "58px", height: "58px" }}
+          />
+        </Button>
+      </Box>
+      <TableContainer component={Paper} sx={styles.tableContainer}>
+        <Table size="small" sx={styles.table}>
+          <TableHead sx={styles.tableHead}>
+            <TableRow sx={styles.tableRow}>
+              <TableCell align="center" sx={styles.tableCell}>
+                Nome
+              </TableCell>
+              <TableCell align="center" sx={styles.tableCell}>
+                Descrição
+              </TableCell>
+              <TableCell align="center" sx={styles.tableCell}>
+                Bloco
+              </TableCell>
+              <TableCell align="center" sx={styles.tableCell}>
+                Tipo
+              </TableCell>
+              <TableCell align="center" sx={styles.tableCell}>
+                Capacidade
+              </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{listSalas}</TableBody>
+          <TableBody sx={styles.tableBody}>{listSalas}</TableBody>
         </Table>
       </TableContainer>
-    </div>
+      <Box sx={styles.footer}></Box>
+    </Container>
   );
+}
+
+function getStyles() {
+  return {
+    container: {
+      backgroundImage: `url(../../img/fundo.png)`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      height: "auto",
+      minWidth: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "column",
+    },
+    header: {
+      backgroundColor: "rgba(177, 16, 16, 1)",
+      width: "192vh",
+      height: "11vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "end",
+      borderBottom: "5px solid white",
+    },
+    logo: {
+      width: "230px",
+      height: "auto",
+      marginRight: "1530px",
+      border: "4px solid white",
+      borderRadius: 15,
+    },
+
+    buttonHome: {
+      color: "white",
+      mr: 4,
+    },
+    tableContainer: {
+      backgroundColor: "transparent",
+    },
+    table: {
+      backgroundColor: "#949494",
+      mt: 5,
+      mb: 5,
+    },
+    tableHead: { backgroundColor: "gray", borderRadius: 10 },
+
+    tableCell: {
+      backgroundColor: "gray",
+      border: "3px solid white",
+      borderRadius: 2,
+      color: "white",
+      fontWeight: "bold",
+      fontSize: 22,
+      paddingTop: 2,
+      paddingBottom: 2,
+    },
+
+    tableBody: {
+      backgroundColor: "#949494",
+      border: "3px solid white",
+      borderRadius: 10,
+    },
+
+    tableBodyCell: {
+      backgroundColor: "#949494",
+      border: "1px solid white",
+      borderRadius: 10,
+      color: "white",
+      fontSize: 20,
+      paddingTop: 1.2,
+      paddingBottom: 1.2,
+    },
+
+    footer: {
+      backgroundColor: "rgba(177, 16, 16, 1)",
+      width: "192vh",
+      height: "6vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "end",
+      borderTop: "5px solid white",
+    },
+  };
 }
 
 export default Principal;
