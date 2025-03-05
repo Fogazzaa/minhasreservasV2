@@ -152,7 +152,7 @@ function getStyles() {
     },
     header: {
       backgroundColor: "rgba(177, 16, 16, 1)",
-      width: "195vh",
+      width: "210vh",
       height: "11vh",
       display: "flex",
       alignItems: "center",
@@ -160,10 +160,10 @@ function getStyles() {
       borderBottom: "5px solid white",
     },
     buttonHome: {
-      mr: 4,
+      mr: 8,
     },
     form: {
-      mt: 8,
+      mt: 5.2,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -239,7 +239,7 @@ function getStyles() {
     footer: {
       mt: 9,
       backgroundColor: "rgba(177, 16, 16, 1)",
-      width: "195vh",
+      width: "210vh",
       height: "7vh",
       display: "flex",
       alignItems: "center",
