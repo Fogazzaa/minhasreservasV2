@@ -117,7 +117,7 @@ function getStyles() {
     },
     header: {
       backgroundColor: "rgba(177, 16, 16, 1)",
-      width: "192vh",
+      width: "210vh",
       height: "11vh",
       display: "flex",
       alignItems: "center",
@@ -127,13 +127,13 @@ function getStyles() {
     logo: {
       width: "230px",
       height: "auto",
-      marginRight: "1530px",
+      marginRight: "1540px",
       border: "4px solid white",
       borderRadius: 15,
     },
 
     buttonHome: {
-      mr: 4,
+      mr: 8,
     },
     tableContainer: {
       backgroundColor: "transparent",
@@ -174,7 +174,7 @@ function getStyles() {
 
     footer: {
       backgroundColor: "rgba(177, 16, 16, 1)",
-      width: "192vh",
+      width: "210vh",
       height: "7vh",
       display: "flex",
       alignItems: "center",

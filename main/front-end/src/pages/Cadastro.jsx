@@ -51,7 +51,7 @@ function Cadastro() {
           <img
             src={home}
             alt="Home"
-            style={{ width: "70px", height: "70px" }}
+            style={{ width: "65px", height: "65px" }}
           />
         </Button>
       </Box>
