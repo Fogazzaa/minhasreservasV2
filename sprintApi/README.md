@@ -36,7 +36,7 @@ A Sprint API foi desenvolvida utilizando Node.js e Express, oferecendo endpoints
 1. **Clonar o Repositório**
 
    ```bash
-    git clone https://github.com/MariaFernandaCintra/sprintApi.git
+    git clone https://github.com/Fogazzaa/minhasreservasV2/tree/main
 
    ```
 
@@ -175,7 +175,7 @@ CREATE INDEX idx_reserva_hora_fim ON reserva(hora_fim);
 
 ## Documentação Completa dos Endpoints
 
-Os exemplos de requisição cURL foram movidos para um arquivo separado. Acesse-os [aqui](https://github.com/Fogazzaa/minhasReservasV2/sprintApi/blob/main/CURLS.md).
+Os exemplos de requisição cURL foram movidos para um arquivo separado. Acesse-os [aqui](https://github.com/Fogazzaa/minhasreservasV2/blob/main/sprintApi/CURLS.md).
 
 ## Autores
 
