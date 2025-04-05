@@ -12,43 +12,31 @@ const formatarDataHoraAtual = () => {
   return `${day}-${month}-${year} ${hour}:${minute}:${second}`;
 };
 
-// Retorna o dia da semana em português, dado uma data no formato "YYYY-MM-DD"
-const getDiaSemana = (data) => {
-  const [year, month, day] = data.split("-").map(Number);
-  const date = new Date(year, month - 1, day);
-  const diasSemana = [
-    "Domingo",
-    "Segunda-Feira",
-    "Terça-Feira",
-    "Quarta-Feira",
-    "Quinta-Feira",
-    "Sexta-Feira",
-    "Sábado",
-  ];
-  return diasSemana[date.getDay()];
-};
-
 // Função auxiliar para criar um objeto Date a partir de data e horário
 const criarDataHora = (data, hora) => new Date(`${data}T${hora}`);
 
 // Função auxiliar para criar um objeto Date com base somente no horário (fixando a data em 1970-01-01)
 const criarHorario = (hora) => new Date(`1970-01-01T${hora}`);
 
-// Formata um objeto Date para o formato HH:MM:SS
-const formatarHorario = (dateObj) => dateObj.toTimeString().split(" ")[0];
-
 module.exports = {
   // Valida os campos obrigatórios e regras de negócio para criação de reserva
-  validarCamposReserva: function ({ fk_id_usuario, fk_id_sala, data, hora_inicio, hora_fim }) {
+  validarCamposReserva: function ({
+    fk_id_usuario,
+    fk_id_sala,
+    data,
+    hora_inicio,
+    hora_fim,
+  }) {
     if (!fk_id_usuario || !fk_id_sala || !data || !hora_inicio || !hora_fim) {
       return { error: "Todos os campos devem ser preenchidos" };
     }
 
-    const diaDaSemana = getDiaSemana(data);
     const inicioTime = criarDataHora(data, hora_inicio);
     const fimTime = criarDataHora(data, hora_fim);
     const now = new Date();
     const nowFormatado = formatarDataHoraAtual();
+    const [year, month, day] = data.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
 
     if (inicioTime < now) {
       return { error: "A reserva deve ser depois de: " + nowFormatado };
@@ -58,7 +46,7 @@ module.exports = {
       return { error: "A hora de início deve ser antes da hora de fim" };
     }
 
-    if (diaDaSemana === "Domingo") {
+    if (date.getDay() === 0) {
       return { error: "A reserva não pode ser feita em um domingo" };
     }
 
@@ -66,7 +54,8 @@ module.exports = {
     const fimHour = fimTime.getHours();
     if (inicioHour < 7 || inicioHour >= 23 || fimHour < 7 || fimHour >= 23) {
       return {
-        error: "A reserva deve ser feita no horário de funcionamento do SENAI. Entre 7:00 e 23:00",
+        error:
+          "A reserva deve ser feita no horário de funcionamento do SENAI. Entre 7:00 e 23:00",
       };
     }
 
@@ -102,7 +91,8 @@ module.exports = {
     const fimHour = fimTime.getHours();
     if (inicioHour < 7 || inicioHour >= 23 || fimHour < 7 || fimHour >= 23) {
       return {
-        error: "A reserva deve ser feita no horário de funcionamento do SENAI. Entre 7:00 e 23:00",
+        error:
+          "A reserva deve ser feita no horário de funcionamento do SENAI. Entre 7:00 e 23:00",
       };
     }
 
@@ -140,7 +130,12 @@ module.exports = {
   },
 
   // Valida conflitos de horário para criação de reserva e, se houver, tenta obter o próximo horário disponível
-  validarConflitoReserva: async function (fk_id_sala, data, hora_inicio, hora_fim) {
+  validarConflitoReserva: async function (
+    fk_id_sala,
+    data,
+    hora_inicio,
+    hora_fim
+  ) {
     const query = `
       SELECT hora_inicio, hora_fim 
       FROM reserva 
@@ -153,15 +148,15 @@ module.exports = {
       connect.query(query, values, (err, reservas) => {
         if (err) return reject(err);
 
-        const desiredStart = criarHorario(hora_inicio);
-        const desiredEnd = criarHorario(hora_fim);
+        const uReservaInicio = criarHorario(hora_inicio);
+        const uReservaFim = criarHorario(hora_fim);
         let conflito = false;
 
         // Verifica se há conflito com alguma reserva existente
         for (const reserva of reservas) {
-          const rStart = criarHorario(reserva.hora_inicio);
-          const rEnd = criarHorario(reserva.hora_fim);
-          if (desiredStart < rEnd && desiredEnd > rStart) {
+          const reservaInicio = criarHorario(reserva.hora_inicio);
+          const reservaFim = criarHorario(reserva.hora_fim);
+          if (uReservaInicio < reservaFim && uReservaFim > reservaInicio) {
             conflito = true;
             break;
           }
@@ -174,16 +169,19 @@ module.exports = {
 
         // Se houver conflito, procura o primeiro intervalo livre de 50 minutos
         const duracaoMs = 50 * 60 * 1000;
-        let inicioDisponivel = desiredStart;
-        const fimDoDia = criarHorario("23:59:59");
+        let inicioDisponivel = uReservaInicio;
+        const fimDoDia = criarHorario("23:00:00");
 
         for (const reserva of reservas) {
-          const rStart = criarHorario(reserva.hora_inicio);
-          const rEnd = criarHorario(reserva.hora_fim);
-          if (inicioDisponivel.getTime() + duracaoMs <= rStart.getTime()) {
+          const reservaInicio = criarHorario(reserva.hora_inicio);
+          const reservaFim = criarHorario(reserva.hora_fim);
+          if (
+            inicioDisponivel.getTime() + duracaoMs <=
+            reservaInicio.getTime()
+          ) {
             break;
-          } else if (inicioDisponivel < rEnd) {
-            inicioDisponivel = rEnd;
+          } else if (inicioDisponivel < reservaFim) {
+            inicioDisponivel = reservaFim;
           }
         }
 
@@ -203,7 +201,13 @@ module.exports = {
   },
 
   // Valida conflitos de horário para atualização de reserva (excluindo a própria reserva)
-  validarConflitoReservaAtualizacao: async function (fk_id_sala, data, hora_inicio, hora_fim, reservaId) {
+  validarConflitoReservaAtualizacao: async function (
+    fk_id_sala,
+    data,
+    hora_inicio,
+    hora_fim,
+    reservaId
+  ) {
     const query = `
       SELECT hora_inicio, hora_fim 
       FROM reserva 
@@ -219,26 +223,31 @@ module.exports = {
       fk_id_sala,
       reservaId,
       data,
-      hora_inicio, hora_inicio,
-      hora_inicio, hora_fim,
-      hora_inicio, hora_fim,
-      hora_inicio, hora_fim,
+      hora_inicio,
+      hora_inicio,
+      hora_inicio,
+      hora_fim,
+      hora_inicio,
+      hora_fim,
+      hora_inicio,
+      hora_fim,
     ];
 
     return new Promise((resolve, reject) => {
-      connect.query(query, values, (err, resultados) => {
+      connect.query(query, values, (err, results) => {
         if (err) return reject(err);
-        if (resultados.length === 0) {
+        if (results.length === 0) {
           return resolve({ conflito: false });
         } else {
           // Ordena as reservas conflitantes para identificar o próximo horário disponível
-          resultados.sort(
-            (a, b) =>
-              criarHorario(a.hora_fim) - criarHorario(b.hora_fim)
+          results.sort(
+            (a, b) => criarHorario(a.hora_fim) - criarHorario(b.hora_fim)
           );
-          const proximoInicio = resultados[0].hora_fim;
+          const proximoInicio = results[0].hora_fim;
           const inicioDisponivel = criarHorario(proximoInicio);
-          const fimDisponivel = new Date(inicioDisponivel.getTime() + 50 * 60 * 1000);
+          const fimDisponivel = new Date(
+            inicioDisponivel.getTime() + 50 * 60 * 1000
+          );
           return resolve({
             conflito: true,
             inicioDisponivel,
@@ -248,7 +257,4 @@ module.exports = {
       });
     });
   },
-
-  // Exposição dos auxiliares para formatação (se necessário na controller)
-  formatarHorario,
 };

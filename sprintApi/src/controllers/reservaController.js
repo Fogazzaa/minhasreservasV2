@@ -1,15 +1,5 @@
-const connect = require("../db/connect");
 const validateReserva = require("../services/validateReserva");
-
-// Função auxiliar para executar queries e retornar uma Promise
-const queryAsync = (query, values = []) => {
-  return new Promise((resolve, reject) => {
-    connect.query(query, values, (err, results) => {
-      if (err) return reject(err);
-      resolve(results);
-    });
-  });
-};
+const { queryAsync, formatarHorario } = require("../services/functions");
 
 // Retorna o dia da semana em português, dado uma data no formato "YYYY-MM-DD"
 const getDiaSemana = (data) => {
@@ -68,7 +58,7 @@ module.exports = class ReservaController {
         if (conflitoResult.disponivel) {
           const { inicioDisponivel, fimDisponivel } = conflitoResult;
           return res.status(400).json({
-            error: `A sala já está reservada neste horário. O próximo horário disponível é de ${validateReserva.formatarHorario(inicioDisponivel)} até ${validateReserva.formatarHorario(fimDisponivel)}`
+            error: `A sala já está reservada neste horário. O próximo horário disponível é de ${formatarHorario(inicioDisponivel)} até ${formatarHorario(fimDisponivel)}`
           });
         } else {
           return res.status(400).json({
@@ -103,18 +93,9 @@ module.exports = class ReservaController {
     const query = `SELECT * FROM reserva`;
     try {
       const results = await queryAsync(query);
-      const reservasFormatadas = results.map((reserva) => ({
-        id_reserva: reserva.id_reserva,
-        fk_id_sala: reserva.fk_id_sala,
-        fk_id_usuario: reserva.fk_id_usuario,
-        dia_semana: reserva.dia_semana,
-        data: reserva.data,
-        hora_inicio: reserva.hora_inicio,
-        hora_fim: reserva.hora_fim,
-      }));
       return res.status(200).json({
         message: "Obtendo todas as reservas",
-        reservas: reservasFormatadas,
+        reservas: results,
       });
     } catch (error) {
       console.error(error);
