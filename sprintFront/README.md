@@ -30,14 +30,14 @@ O projeto consiste em uma tela de login, cadastro. Desenvolvida com React e conf
 
 ### Pré-requisitos
 
-- [Node.js](https://nodejs.org/) instalado.
+- [node.js](https://nodejs.org/) instalado.
 
 ### Passos para Instalação da sprinFront
 
 1. **Clonar o repositório**
 
    ```bash
-   git clone https://github.com/MariaFernandaCintra/sprintFront.git
+   git clone https://github.com/Fogazzaa/minhasreservasV2/tree/main
 
    ```
 
@@ -86,3 +86,11 @@ O projeto consiste em uma tela de login, cadastro. Desenvolvida com React e conf
    ```bash
    npm i react-router-dom
    ```
+
+## Documentação Completa dos Requisitos Necessários
+
+Os requisitos necessários para funcionamento pleno do projeto estão em outro repositório. Acesse-os [aqui](https://github.com/Fogazzaa/minhasreservasV2/tree/main/sprintApi).
+
+## Autores
+
+- [@fogazzaa](https://github.com/Fogazzaa)

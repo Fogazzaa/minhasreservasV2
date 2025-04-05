@@ -1,13 +1,13 @@
 {
   "name": "reservas",
   "version": "1.0.0",
-  "description": "Back end do site de reservas",
+  "description": "Back-End do site de reservas",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js"
   },
-  "author": "Maria Júlia",
+  "author": "Fogazza",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.4",

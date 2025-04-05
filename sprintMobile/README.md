@@ -28,14 +28,14 @@ O projeto consiste em uma aplicação mobile com telas de Login, Cadastro e outr
 
 ### Pré-requisitos
 
-- [Node.js](https://nodejs.org/) instalado.
+- [node.js](https://nodejs.org/) instalado.
 
 ### Passos para Instalação
 
 1. **Clonar o Repositório**
 
    ```bash
-   git clone https://github.com/MariaFernandaCintra/sprintMobile.git
+   git clone https://github.com/Fogazzaa/minhasreservasV2/tree/main/sprintMobile
 
    ```
 
@@ -99,3 +99,11 @@ O projeto consiste em uma aplicação mobile com telas de Login, Cadastro e outr
   ```bash
   npm i styled-components
   ```
+
+## Documentação Completa dos Requisitos Necessários
+
+Os requisitos necessários para funcionamento pleno do projeto estão em outro repositório. Acesse-os [aqui](https://github.com/Fogazzaa/minhasreservasV2/tree/main/sprintApi).
+
+## Autores
+
+- [@fogazzaa](https://github.com/Fogazzaa)
