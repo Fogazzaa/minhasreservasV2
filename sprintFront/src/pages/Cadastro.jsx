@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import CustomModal from "../components/CustomModal";
@@ -15,6 +15,10 @@ import api from "../services/axios";
 
 function Cadastro() {
   const styles = getStyles();
+  useEffect(() => {
+    document.title = "Cadastro | SENAI";
+  }, []);
+
   const [usuario, setUsuario] = useState({
     nome: "",
     email: "",
@@ -229,14 +233,14 @@ function getStyles() {
       minWidth: "100%",
     },
     form: {
-      mt: 8.5,
+      mt: 7.5,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       backgroundColor: "rgba(255, 255, 255, 0.7)",
       paddingRight: 6,
       paddingLeft: 6,
-      paddingTop: 6,
+      paddingTop: 7,
       paddingBottom: 4,
       borderRadius: 10,
     },

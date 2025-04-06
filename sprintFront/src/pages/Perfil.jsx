@@ -4,6 +4,7 @@ import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo.png";
 import api from "../services/axios";
@@ -13,9 +14,18 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Typography from "@mui/material/Typography";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 
 function Perfil() {
   const styles = getStyles();
+  useEffect(() => {
+    document.title = "Perfil | SENAI";
+  }, []);
+  const [reservas, setReservas] = useState([]);
+  const navigate = useNavigate();
+  const [reservaSelecionada, setReservaSelecionada] = useState("");
+  const [mostrarSenha, setMostrarSenha] = useState(false);
 
   const [usuario, setUsuario] = useState({
     nome: "",
@@ -24,7 +34,24 @@ function Perfil() {
     senha: "",
   });
 
-  const [mostrarSenha, setMostrarSenha] = useState(false);
+  useEffect(() => {
+    const fetchDados = async () => {
+      const idUsuario = localStorage.getItem("idUsuario");
+      if (!idUsuario) return;
+
+      try {
+        const responseUsuario = await api.getUsuarioById(idUsuario);
+        setUsuario(responseUsuario.data.usuario);
+
+        const responseReservas = await api.getUsuarioReservaById(idUsuario);
+        setReservas(responseReservas.data.reservas || []);
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    };
+
+    fetchDados();
+  }, []);
 
   useEffect(() => {
     const fetchUsuario = async () => {
@@ -45,6 +72,15 @@ function Perfil() {
 
     fetchUsuario();
   }, []);
+
+  const handleChangeReserva = (event) => {
+    const valor = event.target.value;
+    if (valor === "verTodas") {
+      navigate("/reservas");
+    } else {
+      setReservaSelecionada(valor);
+    }
+  };
 
   return (
     <Container component="main" sx={styles.container}>
@@ -90,7 +126,7 @@ function Perfil() {
           margin="normal"
           disabled
           value={usuario.senha || ""}
-          sx={{ ...styles.textField, mt: 3 }}
+          sx={{ ...styles.textField, mt: 2 }}
           slotProps={{
             input: {
               endAdornment: (
@@ -110,15 +146,40 @@ function Perfil() {
             },
           }}
         />
+        <Select
+          value={reservaSelecionada}
+          onChange={handleChangeReserva}
+          displayEmpty
+          sx={{ ...styles.textField, mt: 2, color: "gray" }}
+        >
+          <MenuItem disabled value="">
+            Minhas Reservas
+          </MenuItem>
+          {reservas.slice(0, 3).map((reserva) => (
+            <MenuItem
+              key={reserva.id}
+              value={reserva.id}
+              sx={{ fontWeight: "bold", color: "gray" }}
+            >
+              {reserva.sala} - {reserva.data}
+            </MenuItem>
+          ))}
+          <MenuItem
+            value="verTodas"
+            sx={{ fontWeight: "bold", color: "darkred" }}
+          >
+            Ver todas as reservas
+          </MenuItem>
+        </Select>
         <Button variant="contained" sx={styles.buttonAtualizar}>
-          Atualizar
+          Atualizar Perfil
         </Button>
       </Box>
       <Box sx={styles.footer}>
-      <Typography sx={styles.footerText}>
-        &copy; Desenvolvido por: Vinicius Fogaça, Maria Júlia e Maria Fernanda
-      </Typography>
-    </Box>
+        <Typography sx={styles.footerText}>
+          &copy; Desenvolvido por: Vinicius Fogaça, Maria Júlia e Maria Fernanda
+        </Typography>
+      </Box>
     </Container>
   );
 }
@@ -132,7 +193,7 @@ function getStyles() {
       backgroundRepeat: "no-repeat",
       height: "auto",
       display: "flex",
-      flex:1,
+      flex: 1,
       flexDirection: "column",
       alignItems: "center",
       minHeight: "80.6vh",
@@ -163,6 +224,7 @@ function getStyles() {
     IconeLogout: {
       width: 40,
       height: 40,
+      mr: 3,
       borderRadius: "50%",
       backgroundColor: "darkred",
       display: "flex",
@@ -181,7 +243,7 @@ function getStyles() {
       borderRadius: 4,
     },
     form: {
-      mt: 12,
+      mt: 6,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -221,7 +283,7 @@ function getStyles() {
       mt: 4,
       color: "white",
       backgroundColor: "rgba(255, 0, 0, 1)",
-      width: 95,
+      width: 180,
       height: 45,
       fontWeight: 600,
       fontSize: 15,
@@ -237,7 +299,7 @@ function getStyles() {
       justifyContent: "center",
       borderTop: "7px solid white",
       marginTop: "auto",
-      mt:"3.5%",
+      mt: "2.75%",
     },
     footerText: {
       color: "white",

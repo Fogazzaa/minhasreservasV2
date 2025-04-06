@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import api from "../services/axios";
@@ -13,9 +13,11 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-
 function Login() {
   const styles = getStyles();
+  useEffect(() => {
+    document.title = "Login | SENAI";
+  }, []);
   const [usuario, setUsuario] = useState({ email: "", senha: "" });
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const navigate = useNavigate();
@@ -51,7 +53,7 @@ function Login() {
           title: "Sucesso!",
           message: response.data.message,
           isSuccess: true,
-          type: "success"
+          type: "success",
         });
         setModalOpen(true);
         const idUsuario = response.data.usuario.id_usuario;
@@ -64,7 +66,7 @@ function Login() {
           title: "Erro!",
           message: error.response?.data?.error || "Erro ao fazer Login",
           isSuccess: false,
-          type: "error"
+          type: "error",
         });
         setModalOpen(true);
       }
@@ -101,7 +103,9 @@ function Login() {
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="toggle password visibility"
-                    onClick={() => setMostrarSenha((previousState) => !previousState)}
+                    onClick={() =>
+                      setMostrarSenha((previousState) => !previousState)
+                    }
                     edge="end"
                     sx={{ color: "gray", mr: 0 }}
                   >

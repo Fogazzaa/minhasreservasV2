@@ -17,6 +17,9 @@ import Typography from "@mui/material/Typography";
 
 function Principal() {
   const styles = getStyles();
+  useEffect(() => {
+    document.title = "Principal | SENAI";
+  }, []);
   const [salas, setSalas] = useState([]);
   async function getSalas() {
     await api.getSalas().then(

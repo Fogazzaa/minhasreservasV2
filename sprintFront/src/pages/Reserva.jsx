@@ -11,6 +11,9 @@ import api from "../services/axios";
 
 function Reserva() {
   const styles = getStyles();
+    useEffect(() => {
+      document.title = "Reserva | SENAI";
+    }, []);
   const [reserva, setReserva] = useState({
     fk_id_usuario: "",
     fk_id_sala: "",

@@ -9,6 +9,7 @@ const sheets = {
   postLogin: (usuario) => api.post(`login/`, usuario),
   postCadastro: (usuario) => api.post(`cadastro/`, usuario),
   getUsuarioById: (id) => api.get(`/usuario/perfil/${id}`),
+  getUsuarioReservaById: (id) => api.get(`/usuario/perfil/${id}/reservas`),
   postReserva: (reserva) => api.post(`reserva/`, reserva),
   getSalas: (sala) => api.get(`salas/`, sala),
 };
