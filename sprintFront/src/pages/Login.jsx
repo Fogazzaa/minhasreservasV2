@@ -84,7 +84,6 @@ function getStyles() {
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       height: "auto",
-      width: "100%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",

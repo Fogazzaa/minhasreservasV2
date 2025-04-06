@@ -17,7 +17,7 @@ function getStyles() {
   return {
     footer: {
       backgroundColor: "rgba(177, 16, 16, 1)",
-      width: "210vh",
+      width: "100%",
       height: "7vh",
       display: "flex",
       alignItems: "center",

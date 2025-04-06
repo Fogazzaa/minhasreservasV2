@@ -9,6 +9,7 @@ function Home() {
   const styles = getStyles();
 
   return (
+    <div>
     <Container sx={styles.container}>
       <Box sx={styles.header}>
         <img src={logo} alt="Logo" style={styles.logo} />
@@ -40,6 +41,7 @@ function Home() {
         </Typography>
       </Box>
     </Container>
+    </div>
   );
 }
 
@@ -56,11 +58,13 @@ function getStyles() {
       alignItems: "center",
       justifyContent: "center",
       flexDirection: "column",
+      pl: { sm: 0 },
+      pr: { sm: 0 }
     },
     header: {
       backgroundColor: "rgba(177, 16, 16, 1)",
-      width: "210vh",
-      length: "100%",
+      width: "100%",
+      minWidth: "100%",
       height: "11vh",
       display: "flex",
       alignItems: "center",
@@ -99,7 +103,7 @@ function getStyles() {
           backgroundColor: "rgba(255, 0, 0, 0.55)",
         },
       },
-      mr: 8,
+      mr: 3,
       ml: 3,
       color: "white",
       backgroundColor: "rgba(255, 0, 0, 1)",
@@ -113,17 +117,17 @@ function getStyles() {
     body: {
       mt: 8,
       mr: 110,
-      width: "70vh",
-      height: "74.2vh",
+      width: "75vh",
+      height: "74.1vh",
     },
     bodyText: {
       color: "white",
       fontSize: 100,
-      fontWeight: 760,
+      fontWeight: "bold",
     },
     footer: {
       backgroundColor: "rgba(177, 16, 16, 1)",
-      width: "210vh",
+      width: "100%",
       height: "7vh",
       display: "flex",
       alignItems: "center",
