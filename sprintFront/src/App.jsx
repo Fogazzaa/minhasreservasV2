@@ -25,7 +25,7 @@ function App() {
           <Route
             path="/login"
             element={
-              <DefaultLayout headerRender={1}>
+              <DefaultLayout>
                 <Login />
               </DefaultLayout>
             }
@@ -33,7 +33,7 @@ function App() {
           <Route
             path="/cadastro"
             element={
-              <DefaultLayout headerRender={1}>
+              <DefaultLayout>
                 <Cadastro />
               </DefaultLayout>
             }
@@ -42,7 +42,7 @@ function App() {
             path="/principal"
             element={
               <ProtectedRouter>
-                <Principal />
+                <Principal/>
               </ProtectedRouter>
             }
           />
@@ -58,7 +58,7 @@ function App() {
             path="/perfil"
             element={
               <ProtectedRouter>
-                <Perfil />
+                <Perfil/>
               </ProtectedRouter>
             }
           />

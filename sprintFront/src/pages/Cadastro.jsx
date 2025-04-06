@@ -229,7 +229,7 @@ function getStyles() {
       minWidth: "100%",
     },
     form: {
-      mt: 8,
+      mt: 8.5,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",

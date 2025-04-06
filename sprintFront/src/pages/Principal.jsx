@@ -7,8 +7,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import api from "../services/axios";
-
+import logo from "../../img/logo.png";
+import Button from "@mui/material/Button";
+import PersonIcon from "@mui/icons-material/Person";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import Typography from "@mui/material/Typography";
 
 function Principal() {
   const styles = getStyles();
@@ -22,6 +27,12 @@ function Principal() {
         console.log("Erro", error);
       }
     );
+  }
+
+  function Logout() {
+    console.log("teste logout");
+    localStorage.removeItem("authenticated");
+    navigate("/");
   }
 
   useEffect(() => {
@@ -63,6 +74,21 @@ function Principal() {
         </Container>
       ) : (
         <Container sx={styles.container}>
+          <Box sx={styles.header}>
+            <img src={logo} alt="Logo" style={styles.logo} />
+            <Button component={Link} to="/perfil" sx={styles.buttonPerfil}>
+              <PersonIcon sx={styles.Iconeperfil} />
+            </Button>
+
+            <Button
+              component={Link}
+              to="/"
+              sx={styles.buttonLogout}
+              onClick={Logout}
+            >
+              <ExitToAppIcon sx={styles.IconeLogout} />
+            </Button>
+          </Box>
           <Box sx={styles.boxFundoTabela}>
             <Container sx={styles.container}>
               {/* Conteúdo da página */}
@@ -93,6 +119,12 @@ function Principal() {
               </Table>
             </TableContainer>
           </Box>
+          <Box sx={styles.footer}>
+            <Typography sx={styles.footerText}>
+              &copy; Desenvolvido por: Vinicius Fogaça, Maria Júlia e Maria
+              Fernanda
+            </Typography>
+          </Box>
         </Container>
       )}
     </div>
@@ -112,18 +144,51 @@ function getStyles() {
       alignItems: "center",
       justifyContent: "center",
       flexDirection: "column",
+      pl: { sm: 0 },
+      pr: { sm: 0 },
     },
     header: {
       backgroundColor: "rgba(177, 16, 16, 1)",
-      width: "210vh",
+      width: "100%",
       height: "11vh",
       display: "flex",
       alignItems: "center",
-      justifyContent: "end",
+      justifyContent: "flex-end",
       borderBottom: "7px solid white",
     },
-    
-    paragrafo: {},
+    logo: {
+      width: "230px",
+      height: "auto",
+      marginRight: "1400px",
+      border: "4px solid white",
+      borderRadius: 15,
+    },
+    Iconeperfil: {
+      width: 54,
+      height: 54,
+      borderRadius: "50%",
+      backgroundColor: "darkred",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      border: "4px solid white",
+      color: "white",
+    },
+    IconeLogout: {
+      width: 40,
+      height: 40,
+      borderRadius: "50%",
+      backgroundColor: "darkred",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      border: "4px solid white",
+      padding: "7px",
+      color: "white",
+    },
+    buttonLogout: {
+      mr: 2,
+    },
     tableContainer: {
       backgroundColor: "transparent",
     },
@@ -131,10 +196,10 @@ function getStyles() {
       backgroundColor: "#949494",
       marginTop: 2.5,
       marginBottom: 2.5,
-      marginLeft: "auto", // Para centralizar
-      marginRight: "auto", // Para centralizar
-      width: "calc(100% - 40px)", // Ajuste o tamanho total da tabela
-      borderRadius: "15px", // Bordas arredondadas
+      marginLeft: "auto",
+      marginRight: "auto",
+      width: "calc(100% - 40px)",
+      borderRadius: "15px",
     },
     tableHead: {
       backgroundColor: "gray",
@@ -171,12 +236,13 @@ function getStyles() {
     },
     footer: {
       backgroundColor: "rgba(177, 16, 16, 1)",
-      width: "210vh",
+      width: "100%",
       height: "7vh",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       borderTop: "7px solid white",
+      marginTop: "auto",
     },
     footerText: {
       color: "white",

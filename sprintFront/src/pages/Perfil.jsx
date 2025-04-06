@@ -4,14 +4,15 @@ import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../img/logo.png";
 import api from "../services/axios";
-import CustomModal from "../components/CustomModal";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import Typography from "@mui/material/Typography";
 
 function Perfil() {
   const styles = getStyles();
@@ -47,6 +48,11 @@ function Perfil() {
 
   return (
     <Container component="main" sx={styles.container}>
+      <Box sx={styles.header}>
+        <Button component={Link} to="/principal" sx={styles.buttonToPrincipal}>
+          <ExitToAppIcon sx={styles.IconeLogout} />
+        </Button>
+      </Box>
       <Box component="form" sx={styles.form} noValidate>
         <Box component="img" src={logo} alt="Logo" sx={styles.logo} />
         <TextField
@@ -108,6 +114,11 @@ function Perfil() {
           Atualizar
         </Button>
       </Box>
+      <Box sx={styles.footer}>
+      <Typography sx={styles.footerText}>
+        &copy; Desenvolvido por: Vinicius Fogaça, Maria Júlia e Maria Fernanda
+      </Typography>
+    </Box>
     </Container>
   );
 }
@@ -121,10 +132,53 @@ function getStyles() {
       backgroundRepeat: "no-repeat",
       height: "auto",
       display: "flex",
+      flex:1,
       flexDirection: "column",
       alignItems: "center",
       minHeight: "80.6vh",
       minWidth: "100%",
+      pl: { sm: 0 },
+      pr: { sm: 0 },
+    },
+    header: {
+      backgroundColor: "rgba(177, 16, 16, 1)",
+      width: "100%",
+      height: "11vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-end",
+      borderBottom: "7px solid white",
+    },
+    Iconeperfil: {
+      width: 54,
+      height: 54,
+      borderRadius: "50%",
+      backgroundColor: "darkred",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      border: "4px solid white",
+      color: "white",
+    },
+    IconeLogout: {
+      width: 40,
+      height: 40,
+      borderRadius: "50%",
+      backgroundColor: "darkred",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      border: "4px solid white",
+      padding: "7px",
+      color: "white",
+    },
+    logo: {
+      width: "280px",
+      height: "auto",
+      mb: 4,
+      border: 5,
+      borderColor: "white",
+      borderRadius: 4,
     },
     form: {
       mt: 12,
@@ -137,14 +191,6 @@ function getStyles() {
       paddingTop: 9,
       paddingBottom: 7,
       borderRadius: 10,
-    },
-    logo: {
-      width: "280px",
-      height: "auto",
-      mb: 4,
-      border: 5,
-      borderColor: "white",
-      borderRadius: 4,
     },
     textField: {
       "& .MuiOutlinedInput-root": {
@@ -181,6 +227,21 @@ function getStyles() {
       fontSize: 15,
       borderRadius: 15,
       textTransform: "none",
+    },
+    footer: {
+      backgroundColor: "rgba(177, 16, 16, 1)",
+      width: "100%",
+      height: "7vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      borderTop: "7px solid white",
+      marginTop: "auto",
+      mt:"3.5%",
+    },
+    footerText: {
+      color: "white",
+      fontSize: 18,
     },
   };
 }
