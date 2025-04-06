@@ -8,10 +8,16 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import api from "../services/axios";
 import CustomModal from "../components/CustomModal";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 
 function Login() {
   const styles = getStyles();
   const [usuario, setUsuario] = useState({ email: "", senha: "" });
+  const [mostrarSenha, setMostrarSenha] = useState(false);
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState({
@@ -81,6 +87,7 @@ function Login() {
         />
         <TextField
           id="senha"
+          type={mostrarSenha ? "text" : "password"}
           placeholder="senha"
           name="senha"
           margin="normal"
@@ -88,6 +95,22 @@ function Login() {
           value={usuario.senha}
           onChange={onChange}
           sx={{ ...styles.textField, mt: 3 }}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() => setMostrarSenha((previousState) => !previousState)}
+                    edge="end"
+                    sx={{ color: "gray", mr: 0 }}
+                  >
+                    {mostrarSenha ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            },
+          }}
         />
         <Button
           variant="contained"
@@ -132,21 +155,21 @@ function getStyles() {
       minWidth: "100%",
     },
     form: {
-      mt: 15,
+      mt: 18,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       backgroundColor: "rgba(255, 255, 255, 0.7)",
       paddingRight: 6,
       paddingLeft: 6,
-      paddingTop: 9,
-      paddingBottom: 7,
+      paddingTop: 8,
+      paddingBottom: 4,
       borderRadius: 10,
     },
     logo: {
       width: "280px",
       height: "auto",
-      mb: 4,
+      mb: 2,
       border: 5,
       borderColor: "white",
       borderRadius: 4,

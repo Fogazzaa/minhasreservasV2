@@ -8,16 +8,22 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import api from "../services/axios";
 import CustomModal from "../components/CustomModal";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function Perfil() {
   const styles = getStyles();
-  
+
   const [usuario, setUsuario] = useState({
     nome: "",
     email: "",
     NIF: "",
     senha: "",
   });
+
+  const [mostrarSenha, setMostrarSenha] = useState(false);
 
   useEffect(() => {
     const fetchUsuario = async () => {
@@ -72,18 +78,33 @@ function Perfil() {
         />
         <TextField
           id="senha"
+          type={mostrarSenha ? "text" : "password"}
           placeholder="senha"
           name="senha"
-          type="password"
           margin="normal"
           disabled
           value={usuario.senha || ""}
           sx={{ ...styles.textField, mt: 3 }}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() =>
+                      setMostrarSenha((previousState) => !previousState)
+                    }
+                    edge="end"
+                    sx={{ color: "gray", mr: 0.1 }}
+                  >
+                    {mostrarSenha ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            },
+          }}
         />
-        <Button
-          variant="contained"
-          sx={styles.buttonAtualizar}
-        >
+        <Button variant="contained" sx={styles.buttonAtualizar}>
           Atualizar
         </Button>
       </Box>

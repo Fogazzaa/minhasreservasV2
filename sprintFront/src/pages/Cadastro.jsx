@@ -1,13 +1,17 @@
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
-import api from "../services/axios";
 import CustomModal from "../components/CustomModal";
+import api from "../services/axios";
 
 function Cadastro() {
   const styles = getStyles();
@@ -16,8 +20,12 @@ function Cadastro() {
     email: "",
     NIF: "",
     senha: "",
+    confirmarSenha: "",
   });
-  
+
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
+
   const navigate = useNavigate();
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -80,7 +88,7 @@ function Cadastro() {
           sx={{
             width: "280px",
             height: "auto",
-            mb: 4,
+            mb: 2,
             border: 5,
             borderColor: "white",
             borderRadius: 4,
@@ -119,6 +127,7 @@ function Cadastro() {
         />
         <TextField
           id="senha"
+          type={mostrarSenha ? "text" : "password"}
           autoComplete="off"
           placeholder="senha"
           name="senha"
@@ -126,6 +135,55 @@ function Cadastro() {
           value={usuario.senha}
           onChange={onChange}
           sx={styles.textField}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() =>
+                      setMostrarSenha((previousState) => !previousState)
+                    }
+                    edge="end"
+                    sx={{ color: "gray", mr: 0.1 }}
+                  >
+                    {mostrarSenha ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            },
+          }}
+        />
+        <TextField
+          id="confirmarSenha"
+          placeholder="confirmar-senha"
+          name="confirmarSenha"
+          type={mostrarConfirmarSenha ? "text" : "password"}
+          margin="normal"
+          autoComplete="off"
+          value={usuario.confirmarSenha}
+          onChange={onChange}
+          sx={styles.textField}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() =>
+                      setMostrarConfirmarSenha(
+                        (previousState) => !previousState
+                      )
+                    }
+                    edge="end"
+                    sx={{ color: "gray", mr: 0.1 }}
+                  >
+                    {mostrarConfirmarSenha ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            },
+          }}
         />
         <Button
           variant="contained"
@@ -178,8 +236,8 @@ function getStyles() {
       backgroundColor: "rgba(255, 255, 255, 0.7)",
       paddingRight: 6,
       paddingLeft: 6,
-      paddingTop: 9,
-      paddingBottom: 7,
+      paddingTop: 6,
+      paddingBottom: 4,
       borderRadius: 10,
     },
     textField: {
@@ -214,7 +272,7 @@ function getStyles() {
           boxShadow: "none",
         },
       },
-      mt: 4,
+      mt: 2,
       color: "white",
       backgroundColor: "rgba(255, 0, 0, 1)",
       width: 135,
@@ -232,7 +290,7 @@ function getStyles() {
       textDecoration: "underline",
       textDecorationThickness: "1.5px",
       textUnderlineOffset: "4px",
-      mt: 2,
+      mt: 1,
       textTransform: "none",
       "&:hover": {
         textDecoration: "underline",
