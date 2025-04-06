@@ -15,7 +15,7 @@ curl --location 'http://localhost:5000/reservas/v1/cadastro' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "nome": "Gustavo Almeida",
-    "email":"gustavo.almeida@example.com",
+    "email":"gustavo.almeida@docente.senai.br",
     "NIF":"5439871",
     "senha":"senha123"
 }'
@@ -34,7 +34,7 @@ POST /reservas/v1/login
 curl --location 'http://localhost:5000/reservas/v1/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "email":"gustavo.almeida@example.com",
+    "email":"gustavo.almeida@docente.senai.br",
     "senha":"senha123"
 }'
 ```
@@ -78,7 +78,7 @@ curl --location --request PUT 'http://localhost:5000/reservas/v1/usuario/1' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "nome": "Renata Souza",
-    "email":"renata.souza@example.com",
+    "email":"renata.souza@docente.senai.br",
     "senha":"senha456"
 }'
 ```
