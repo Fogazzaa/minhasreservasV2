@@ -17,7 +17,7 @@ const HeaderPrincipal = ({}) => {
   return (
     <Box sx={styles.header}>
       <img src={logo} alt="Logo" style={styles.logo} />
-      <Button component={Link} to="/principal" sx={styles.buttonPerfil}>
+      <Button component={Link} to="/perfil" sx={styles.buttonPerfil}>
         <PersonIcon sx={styles.Iconeperfil} />
       </Button>
 

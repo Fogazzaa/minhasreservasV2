@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Principal from "./pages/Principal";
 import Reserva from "./pages/Reserva";
+import Perfil from "./pages/Perfil";
 import DefaultLayout from "./components/DefaultLayout";
 
 const theme = createTheme({
@@ -50,6 +51,14 @@ function App() {
             element={
               <ProtectedRouter>
                 <Reserva />
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path="/perfil"
+            element={
+              <ProtectedRouter>
+                <Perfil />
               </ProtectedRouter>
             }
           />

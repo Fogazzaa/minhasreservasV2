@@ -16,7 +16,6 @@ function Principal() {
   async function getSalas() {
     await api.getSalas().then(
       (response) => {
-        console.log(response.data.salas);
         setSalas(response.data.salas);
       },
       (error) => {

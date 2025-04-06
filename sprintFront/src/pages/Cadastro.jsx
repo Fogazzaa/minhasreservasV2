@@ -17,7 +17,7 @@ function Cadastro() {
     NIF: "",
     senha: "",
   });
-
+  
   const navigate = useNavigate();
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -88,6 +88,7 @@ function Cadastro() {
         />
         <TextField
           id="nome"
+          autoComplete="off"
           placeholder="nome"
           name="nome"
           margin="normal"
@@ -97,6 +98,7 @@ function Cadastro() {
         />
         <TextField
           id="email"
+          autoComplete="off"
           placeholder="e-mail"
           name="email"
           margin="normal"
@@ -106,6 +108,7 @@ function Cadastro() {
         />
         <TextField
           id="NIF"
+          autoComplete="off"
           placeholder="NIF"
           type="number"
           name="NIF"
@@ -116,6 +119,7 @@ function Cadastro() {
         />
         <TextField
           id="senha"
+          autoComplete="off"
           placeholder="senha"
           name="senha"
           margin="normal"

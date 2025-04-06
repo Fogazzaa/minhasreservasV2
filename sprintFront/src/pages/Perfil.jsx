@@ -3,115 +3,89 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import api from "../services/axios";
 import CustomModal from "../components/CustomModal";
 
-function Login() {
+function Perfil() {
   const styles = getStyles();
-  const [usuario, setUsuario] = useState({ email: "", senha: "" });
-  const navigate = useNavigate();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalInfo, setModalInfo] = useState({
-    title: "",
-    message: "",
-    isSuccess: false,
-    type: "",
+  
+  const [usuario, setUsuario] = useState({
+    nome: "",
+    email: "",
+    NIF: "",
+    senha: "",
   });
 
-  const onChange = (event) => {
-    const { name, value } = event.target;
-    setUsuario({ ...usuario, [name]: value });
-  };
+  useEffect(() => {
+    const fetchUsuario = async () => {
+      const idUsuario = localStorage.getItem("idUsuario");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    LoginUsuario();
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-    if (modalInfo.isSuccess) {
-      navigate("/principal");
-    }
-  };
-
-  async function LoginUsuario() {
-    await api.postLogin(usuario).then(
-      (response) => {
-        setModalInfo({
-          title: "Sucesso!",
-          message: response.data.message,
-          isSuccess: true,
-          type: "success"
-        });
-        setModalOpen(true);
-        const idUsuario = response.data.usuario.id_usuario;
-        localStorage.setItem("idUsuario", idUsuario);
-        localStorage.setItem("authenticated", true);
-      },
-      (error) => {
-        console.log(error);
-        setModalInfo({
-          title: "Erro!",
-          message: error.response?.data?.error || "Erro ao fazer Login",
-          isSuccess: false,
-          type: "error"
-        });
-        setModalOpen(true);
+      if (!idUsuario) {
+        console.error("ID do usuário não encontrado no localStorage");
+        return;
       }
-    );
-  }
+
+      try {
+        const response = await api.getUsuarioById(idUsuario);
+        setUsuario(response.data.usuario);
+      } catch (error) {
+        console.error("Erro ao buscar dados do usuário:", error);
+      }
+    };
+
+    fetchUsuario();
+  }, []);
 
   return (
     <Container component="main" sx={styles.container}>
-      <Box component="form" sx={styles.form} onSubmit={handleSubmit} noValidate>
+      <Box component="form" sx={styles.form} noValidate>
         <Box component="img" src={logo} alt="Logo" sx={styles.logo} />
+        <TextField
+          id="nome"
+          placeholder="nome"
+          name="nome"
+          margin="normal"
+          disabled
+          value={usuario.nome || ""}
+          sx={styles.textField}
+        />
         <TextField
           id="email"
           placeholder="e-mail"
           name="email"
           margin="normal"
-          autoComplete="off"
-          value={usuario.email}
-          onChange={onChange}
+          disabled
+          value={usuario.email || ""}
+          sx={styles.textField}
+        />
+        <TextField
+          id="NIF"
+          placeholder="NIF"
+          name="NIF"
+          margin="normal"
+          disabled
+          value={usuario.NIF || ""}
           sx={styles.textField}
         />
         <TextField
           id="senha"
           placeholder="senha"
           name="senha"
+          type="password"
           margin="normal"
-          autoComplete="off"
-          value={usuario.senha}
-          onChange={onChange}
+          disabled
+          value={usuario.senha || ""}
           sx={{ ...styles.textField, mt: 3 }}
         />
         <Button
           variant="contained"
-          onClick={LoginUsuario}
-          sx={styles.buttonLogin}
+          sx={styles.buttonAtualizar}
         >
-          Login
+          Atualizar
         </Button>
-        <Button
-          component={Link}
-          to="/cadastro"
-          sx={styles.buttonCadastro}
-          variant="text"
-        >
-          Cadastre-se
-        </Button>
-        <CustomModal
-          open={modalOpen}
-          onClose={handleCloseModal}
-          title={modalInfo.title}
-          message={modalInfo.message}
-          type={modalInfo.type}
-          buttonText="Fechar"
-        />
       </Box>
     </Container>
   );
@@ -132,7 +106,7 @@ function getStyles() {
       minWidth: "100%",
     },
     form: {
-      mt: 15,
+      mt: 12,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -168,7 +142,7 @@ function getStyles() {
       border: "0px transparent",
       borderRadius: 4,
     },
-    buttonLogin: {
+    buttonAtualizar: {
       "&.MuiButton-root": {
         border: "none",
         boxShadow: "none",
@@ -180,30 +154,14 @@ function getStyles() {
       mt: 4,
       color: "white",
       backgroundColor: "rgba(255, 0, 0, 1)",
-      width: 85,
+      width: 95,
       height: 45,
       fontWeight: 600,
       fontSize: 15,
       borderRadius: 15,
       textTransform: "none",
     },
-    buttonCadastro: {
-      color: "rgb(152, 0, 0)",
-      backgroundColor: "transparent",
-      fontWeight: "bold",
-      fontSize: 15.5,
-      textDecoration: "underline",
-      textDecorationThickness: "1.5px",
-      textUnderlineOffset: "4px",
-      mt: 2,
-      textTransform: "none",
-      "&:hover": {
-        textDecoration: "underline",
-        backgroundColor: "transparent",
-        color: "rgb(167, 63, 63)",
-      },
-    },
   };
 }
 
-export default Login;
+export default Perfil;
