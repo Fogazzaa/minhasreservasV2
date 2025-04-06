@@ -149,7 +149,7 @@ function getStyles() {
         fontSize: "17px",
         color: "black",
       },
-      width: "35vh",
+      width: { xs: "90%", sm: "70%", md: "35vh" },
       height: "5.5vh",
       backgroundColor: "white",
       display: "flex",

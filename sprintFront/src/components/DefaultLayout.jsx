@@ -9,7 +9,7 @@ const DefaultLayout = ({ children, headerRender }) => {
     <div>
       {headerRender === 1 ? (
         <Box
-          sx={{ display: "flex", flexDirection: "column", minHeight: "100px" }}
+          sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
         >
           <Header />
           {/* aqui vem o conteudo da pagina */}
@@ -26,7 +26,7 @@ const DefaultLayout = ({ children, headerRender }) => {
         </Box>
       ) : (
         <Box
-          sx={{ display: "flex", flexDirection: "column", minHeight: "100px" }}
+          sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
         >
           <HeaderPrincipal />
           {/* aqui vem o conteudo da pagina */}
