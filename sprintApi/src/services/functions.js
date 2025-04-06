@@ -27,4 +27,9 @@ const formatarHorario = (dateObj) => {
   return `${horas}:${minutos}:${segundos}`;
 };
 
-module.exports = { queryAsync, formatarData, formatarHorario };
+function validarSenha(senha) {
+  const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[.@$!%*?&])[A-Za-z\d.@$!%*?&]{8,}$/;
+  return regex.test(senha);
+}
+
+module.exports = { queryAsync, formatarData, formatarHorario, validarSenha };

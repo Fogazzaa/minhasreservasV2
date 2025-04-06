@@ -17,7 +17,8 @@ curl --location 'http://localhost:5000/reservas/v1/cadastro' \
     "nome": "Gustavo Almeida",
     "email":"gustavo.almeida@docente.senai.br",
     "NIF":"5439871",
-    "senha":"senha123"
+    "senha":"gustavo.9871",
+    "confirmarSenha":"gustavo.9871"
 }'
 ```
 
@@ -35,7 +36,7 @@ curl --location 'http://localhost:5000/reservas/v1/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "email":"gustavo.almeida@docente.senai.br",
-    "senha":"senha123"
+    "senha":"gustavo.9871"
 }'
 ```
 
@@ -79,7 +80,7 @@ curl --location --request PUT 'http://localhost:5000/reservas/v1/usuario/1' \
 --data-raw '{
     "nome": "Renata Souza",
     "email":"renata.souza@docente.senai.br",
-    "senha":"senha456"
+    "senha":"renata.9871",
 }'
 ```
 ---
