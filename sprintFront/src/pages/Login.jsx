@@ -7,11 +7,19 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import api from "../services/axios";
+import CustomModal from "../components/CustomModal";
 
 function Login() {
   const styles = getStyles();
-  const [usuario, setUsuario] = useState({ email: "", senha: ""});
+  const [usuario, setUsuario] = useState({ email: "", senha: "" });
   const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalInfo, setModalInfo] = useState({
+    title: "",
+    message: "",
+    isSuccess: false,
+    type: "",
+  });
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -20,23 +28,42 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleLogin();
+    LoginUsuario();
   };
 
-  async function handleLogin() {
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    if (modalInfo.isSuccess) {
+      navigate("/principal");
+    }
+  };
+
+  async function LoginUsuario() {
     await api.postLogin(usuario).then(
       (response) => {
-        alert(response.data.message);
+        setModalInfo({
+          title: "Sucesso!",
+          message: response.data.message,
+          isSuccess: true,
+          type: "success"
+        });
+        setModalOpen(true);
+        console.log("Tipo do modal:", modalInfo.type);
         localStorage.setItem("authenticated", true);
-        navigate("/principal");
       },
       (error) => {
         console.log(error);
-        alert(error.response.data.error);
+        setModalInfo({
+          title: "Erro!",
+          message: error.response?.data?.error || "Erro ao fazer Login",
+          isSuccess: false,
+          type: "error"
+        });
+        console.log("Tipo do modal:", modalInfo.type);
+        setModalOpen(true);
       }
     );
   }
-
 
   return (
     <Container component="main" sx={styles.container}>
@@ -60,8 +87,12 @@ function Login() {
           onChange={onChange}
           sx={{ ...styles.textField, mt: 3 }}
         />
-        <Button sx={styles.buttonLogin} type="submit" variant="contained">
-          Entrar
+        <Button
+          variant="contained"
+          onClick={LoginUsuario}
+          sx={styles.buttonLogin}
+        >
+          Login
         </Button>
         <Button
           component={Link}
@@ -71,6 +102,14 @@ function Login() {
         >
           Cadastre-se
         </Button>
+        <CustomModal
+          open={modalOpen}
+          onClose={handleCloseModal}
+          title={modalInfo.title}
+          message={modalInfo.message}
+          type={modalInfo.type}
+          buttonText="Fechar"
+        />
       </Box>
     </Container>
   );

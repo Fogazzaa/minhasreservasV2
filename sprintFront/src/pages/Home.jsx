@@ -10,37 +10,38 @@ function Home() {
 
   return (
     <div>
-    <Container sx={styles.container}>
-      <Box sx={styles.header}>
-        <img src={logo} alt="Logo" style={styles.logo} />
-        <Button
-          component={Link}
-          to="/cadastro"
-          sx={styles.buttonToCadastro}
-          variant="text"
-        >
-          Cadastre-se
-        </Button>
-        <Button
-          component={Link}
-          to="/login"
-          sx={styles.buttonToLogin}
-          variant="text"
-        >
-          Login
-        </Button>
-      </Box>
-      <Box sx={styles.body}>
-        <Typography sx={styles.bodyText}>
-          Seja Bem-vindo ao site de Reservas do SENAI
-        </Typography>
-      </Box>
-      <Box sx={styles.footer}>
-        <Typography sx={styles.footerText}>
-          &copy; Desenvolvido por: Vinicius Fogaça, Maria Júlia e Maria Fernanda
-        </Typography>
-      </Box>
-    </Container>
+      <Container sx={styles.container}>
+        <Box sx={styles.header}>
+          <img src={logo} alt="Logo" style={styles.logo} />
+          <Button
+            component={Link}
+            to="/cadastro"
+            sx={styles.buttonToCadastro}
+            variant="text"
+          >
+            Cadastre-se
+          </Button>
+          <Button
+            component={Link}
+            to="/login"
+            sx={styles.buttonToLogin}
+            variant="text"
+          >
+            Login
+          </Button>
+        </Box>
+        <Box sx={styles.body}>
+          <Typography sx={styles.bodyText}>
+            Seja Bem-vindo ao site de Reservas do SENAI
+          </Typography>
+        </Box>
+        <Box sx={styles.footer}>
+          <Typography sx={styles.footerText}>
+            &copy; Desenvolvido por: Vinicius Fogaça, Maria Júlia e Maria
+            Fernanda
+          </Typography>
+        </Box>
+      </Container>
     </div>
   );
 }
@@ -59,7 +60,7 @@ function getStyles() {
       justifyContent: "center",
       flexDirection: "column",
       pl: { sm: 0 },
-      pr: { sm: 0 }
+      pr: { sm: 0 },
     },
     header: {
       backgroundColor: "rgba(177, 16, 16, 1)",

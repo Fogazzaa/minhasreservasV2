@@ -36,7 +36,7 @@ function getStyles() {
       height: "11vh",
       display: "flex",
       alignItems: "center",
-      justifyContent: "end",
+      justifyContent: "flex-end",
       borderBottom: "7px solid white",
     },
     logo: {
@@ -47,8 +47,8 @@ function getStyles() {
       borderRadius: 15,
     },
     Iconeperfil: {
-      width: 60,
-      height: 60,
+      width: 54,
+      height: 54,
       borderRadius: "50%",
       backgroundColor: "darkred",
       display: "flex",
@@ -58,8 +58,8 @@ function getStyles() {
       color: "white",
     },
     IconeLogout: {
-      width: 50,
-      height: 50,
+      width: 40,
+      height: 40,
       borderRadius: "50%",
       backgroundColor: "darkred",
       display: "flex",
@@ -70,9 +70,6 @@ function getStyles() {
       color: "white",
     },
     buttonHome: {
-      mr: 2,
-    },
-    buttonPerfil: {
       mr: 2,
     },
   };

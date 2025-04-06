@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import api from "../services/axios";
+import CustomModal from "../components/CustomModal";
 
 function Cadastro() {
   const styles = getStyles();
@@ -15,6 +16,16 @@ function Cadastro() {
     email: "",
     NIF: "",
     senha: "",
+  });
+
+  const navigate = useNavigate();
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalInfo, setModalInfo] = useState({
+    title: "",
+    message: "",
+    isSuccess: false,
+    type: "",
   });
 
   const onChange = (event) => {
@@ -27,18 +38,34 @@ function Cadastro() {
     CadastroUsuario();
   };
 
-  const navigate = useNavigate();
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    if (modalInfo.isSuccess) {
+      navigate("/principal");
+    }
+  };
 
   async function CadastroUsuario() {
     await api.postCadastro(usuario).then(
       (response) => {
-        alert(response.data.message);
+        setModalInfo({
+          title: "Sucesso!",
+          message: response.data.message,
+          isSuccess: true,
+          type: "success",
+        });
+        setModalOpen(true);
         localStorage.setItem("authenticated", true);
-        navigate("/principal");
       },
       (error) => {
         console.log(error);
-        alert(error.response.data.error);
+        setModalInfo({
+          title: "Erro!",
+          message: error.response?.data?.error || "Erro ao cadastrar usuário",
+          isSuccess: false,
+          type: "error",
+        });
+        setModalOpen(true);
       }
     );
   }
@@ -96,8 +123,12 @@ function Cadastro() {
           onChange={onChange}
           sx={styles.textField}
         />
-        <Button type="submit" variant="contained" sx={styles.buttonCadastro}>
-          Cadastrar-se
+        <Button
+          variant="contained"
+          onClick={CadastroUsuario}
+          sx={styles.buttonCadastro}
+        >
+          Cadastre-se
         </Button>
         <Button
           component={Link}
@@ -107,6 +138,14 @@ function Cadastro() {
         >
           Login
         </Button>
+        <CustomModal
+          open={modalOpen}
+          onClose={handleCloseModal}
+          title={modalInfo.title}
+          message={modalInfo.message}
+          type={modalInfo.type}
+          buttonText="Fechar"
+        />
       </Box>
     </Container>
   );
