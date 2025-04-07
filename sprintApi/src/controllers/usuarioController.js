@@ -1,5 +1,5 @@
 const { queryAsync, formatarData } = require("../services/functions");
-const usuarioValidator = require("../services/validateUsuario");
+const usuarioValidator = require("../utils/validateUsuario");
 
 module.exports = class usuarioController {
   static async createUsuarios(req, res) {

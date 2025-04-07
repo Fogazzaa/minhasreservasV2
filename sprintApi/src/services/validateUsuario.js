@@ -1,5 +1,5 @@
 const connect = require("../db/connect");
-const { validarSenha } = require("../services/functions");
+const { validarSenha } = require("../utils/functions");
 
 module.exports = {
   // Valida os campos obrigatórios para criação do usuário
