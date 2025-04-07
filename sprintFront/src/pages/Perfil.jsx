@@ -1,21 +1,33 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import TextField from "@mui/material/TextField";
+// React
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+
+// React Router
+import { useNavigate, Link } from "react-router-dom";
+
+// MUI - Componentes
+import {
+  Box,
+  Button,
+  Container,
+  TextField,
+  IconButton,
+  InputAdornment,
+  Typography,
+  MenuItem,
+  Select,
+} from "../components";
+
+// MUI - Ícones
+import {
+  Visibility,
+  VisibilityOff,
+  ExitToAppIcon,
+} from "../components";
+
+// Assets e serviços
 import logo from "../../img/logo.png";
 import api from "../services/axios";
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import Typography from "@mui/material/Typography";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
 
 function Perfil() {
   const styles = getStyles();

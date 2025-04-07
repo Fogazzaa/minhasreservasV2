@@ -1,16 +1,28 @@
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
-import TextField from "@mui/material/TextField";
+// React
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+// React Router
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../img/logo.png";
+
+// MUI - Componentes
+import {
+  Box,
+  Button,
+  Container,
+  IconButton,
+  InputAdornment,
+  TextField,
+} from "../components";
+
+// MUI - Ícones
+import { Visibility, VisibilityOff } from "../components";
+
+// Componentes
 import CustomModal from "../components/CustomModal";
+
+// Assets e serviços
+import logo from "../../img/logo.png";
 import api from "../services/axios";
 
 function Cadastro() {

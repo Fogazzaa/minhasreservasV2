@@ -1,6 +1,8 @@
-import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+// React
+import * as React from "react";
+
+// Componentes
+import { Header, Footer } from "../components";
 
 const DefaultLayout = ({ children }) => {
   return (

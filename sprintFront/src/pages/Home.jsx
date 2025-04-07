@@ -1,9 +1,19 @@
+// React
+import * as React from "react";
+
+// React Router
 import { Link } from "react-router-dom";
+
+// MUI - Componentes
+import {
+  Box,
+  Button,
+  Container,
+  Typography,
+} from "../components";
+
+// Assets e serviços
 import logo from "../../img/logo.png";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
 
 function Home() {
   const styles = getStyles();

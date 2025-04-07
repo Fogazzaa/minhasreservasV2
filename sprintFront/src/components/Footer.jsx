@@ -1,6 +1,11 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import React from "react";
+// React
+import * as React from "react";
+
+// MUI - Componentes
+import {
+  Box,
+  Typography,
+} from "../components";
 
 const Footer = () => {
   const styles = getStyles();

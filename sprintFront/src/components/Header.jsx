@@ -1,9 +1,15 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import React from "react";
-import { Link } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
+// React
+import * as React from "react";
 
+// React Router
+import { Link } from "react-router-dom";
+
+// MUI - Componentes e Ícones
+import {
+  Box,
+  Button,
+  HomeIcon,
+} from "../components";
 
 const Header = ({}) => {
   const styles = getStyles();

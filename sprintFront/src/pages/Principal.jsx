@@ -1,19 +1,32 @@
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+// React
 import { useEffect, useState } from "react";
+
+// React Router
 import { Link } from "react-router-dom";
-import api from "../services/axios";
+
+// MUI - Componentes
+import {
+  Box,
+  Button,
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "../components";
+
+// MUI - Ícones
+import {
+  PersonIcon,
+  ExitToAppIcon,
+} from "../components";
+
+// Assets e serviços
 import logo from "../../img/logo.png";
-import Button from "@mui/material/Button";
-import PersonIcon from "@mui/icons-material/Person";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import Typography from "@mui/material/Typography";
+import api from "../services/axios";
 
 function Principal() {
   const styles = getStyles();

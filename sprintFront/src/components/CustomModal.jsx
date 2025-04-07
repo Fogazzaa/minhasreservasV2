@@ -1,4 +1,7 @@
-import React from 'react';
+// React
+import * as React from "react";
+
+// MUI - Componentes
 import {
   Dialog,
   DialogTitle,
@@ -6,10 +9,14 @@ import {
   DialogActions,
   Button,
   Typography,
-  Box
-} from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ErrorIcon from '@mui/icons-material/Error';
+  Box,
+} from "../components";
+
+// MUI - Ícones
+import {
+  CheckCircleIcon,
+  ErrorIcon,
+} from "../components";
 
 export default function CustomModal({
   open,

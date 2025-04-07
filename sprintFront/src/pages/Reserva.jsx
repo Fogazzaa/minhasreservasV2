@@ -1,12 +1,19 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import TextField from "@mui/material/TextField";
+// React
 import * as React from "react";
 import { useState } from "react";
+
+// MUI - Componentes
+import {
+  Box,
+  Button,
+  Container,
+  TextField,
+  Header,
+  Footer,
+} from "../components";
+
+// Assets e serviços
 import logo from "../../img/logo.png";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import api from "../services/axios";
 
 function Reserva() {
