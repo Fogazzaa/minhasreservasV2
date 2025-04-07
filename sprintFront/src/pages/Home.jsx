@@ -63,7 +63,7 @@ function getStyles() {
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      height: "auto",
+      height: "100vh",
       minWidth: "100%",
       display: "flex",
       alignItems: "center",

@@ -167,7 +167,7 @@ function getStyles() {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      minHeight: "80.6vh",
+      minHeight: "80.5vh",
       minWidth: "100%",
     },
     form: {

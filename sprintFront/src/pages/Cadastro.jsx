@@ -236,12 +236,11 @@ function getStyles() {
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      height: "auto",
       width: "100%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      minHeight: "80.6vh",
+      minHeight: "80.5vh",
       minWidth: "100%",
     },
     form: {
