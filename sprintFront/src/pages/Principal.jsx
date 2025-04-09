@@ -19,10 +19,7 @@ import {
 } from "../components";
 
 // MUI - Ícones
-import {
-  PersonIcon,
-  ExitToAppIcon,
-} from "../components";
+import { PersonIcon, ExitToAppIcon, AddIcon } from "../components";
 
 // Assets e serviços
 import logo from "../../img/logo.png";
@@ -46,7 +43,6 @@ function Principal() {
   }
 
   function Logout() {
-    console.log("teste logout");
     localStorage.removeItem("authenticated");
     navigate("/");
   }
@@ -92,8 +88,11 @@ function Principal() {
         <Container sx={styles.container}>
           <Box sx={styles.header}>
             <img src={logo} alt="Logo" style={styles.logo} />
+            <Button component={Link} to="/reserva" sx={styles.buttonToReserva}>
+              <AddIcon sx={styles.IconeToReserva} />
+            </Button>
             <Button component={Link} to="/perfil" sx={styles.buttonPerfil}>
-              <PersonIcon sx={styles.Iconeperfil} />
+              <PersonIcon sx={styles.IconeToPerfil} />
             </Button>
 
             <Button
@@ -175,11 +174,11 @@ function getStyles() {
     logo: {
       width: "230px",
       height: "auto",
-      marginRight: "1400px",
+      marginRight: "1350px",
       border: "4px solid white",
       borderRadius: 15,
     },
-    Iconeperfil: {
+    IconeToPerfil: {
       width: 54,
       height: 54,
       borderRadius: "50%",
@@ -203,7 +202,22 @@ function getStyles() {
       color: "white",
     },
     buttonLogout: {
-      mr: 2,
+      mr: 1,
+    },
+    IconeToReserva: {
+      width: 40,
+      height: 40,
+      borderRadius: "50%",
+      backgroundColor: "darkred",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      border: "4px solid white",
+      padding: "7px",
+      color: "white",
+    },
+    buttonToReserva: {
+      mr: 0.9,
     },
     tableContainer: {
       backgroundColor: "transparent",
