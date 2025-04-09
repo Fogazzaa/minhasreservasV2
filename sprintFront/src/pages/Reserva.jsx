@@ -19,7 +19,6 @@ import logo from "../../img/logo.png";
 import api from "../services/axios";
 
 function Reserva() {
-
   const styles = getStyles();
 
   useEffect(() => {
@@ -249,17 +248,40 @@ function getStyles() {
         "&:hover fieldset": { border: "none" },
         "&.Mui-focused fieldset": { border: "none" },
       },
-      "& input::placeholder": {
-        fontSize: "17px",
-        color: "black",
+      "& .MuiOutlinedInput-input": {
+        color: "gray",
+        fontSize: "16px",
+      },
+      "& .MuiInputLabel-root": {
+        fontSize: "16px",
+        color: "gray",
+      },
+      "& .MuiInputLabel-shrink": {
+        fontSize: "18px",
+        marginTop: -1.39,
+        color: "white",
+      },
+      "& input[type='date']": {
+        color: "gray",
+        fontSize: "16px",
+      },
+      "& input[type='time']": {
+        color: "gray",
+        fontSize: "16px",
+      },
+      "& input[type='date']::-webkit-calendar-picker-indicator": {
+        filter: "invert(50%)",
+      },
+      "& input[type='time']::-webkit-calendar-picker-indicator": {
+        filter: "invert(50%)",
       },
       width: "35vh",
       height: "5.5vh",
       backgroundColor: "white",
       display: "flex",
-      border: "0px transparent",
-      borderRadius: 10,
-    },
+      border: 0,
+      borderRadius: 4,
+    },    
     buttonReservar: {
       "&.MuiButton-root": {
         border: "none",

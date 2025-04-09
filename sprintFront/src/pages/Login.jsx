@@ -91,7 +91,7 @@ function Login() {
         <Box component="img" src={logo} alt="Logo" sx={styles.logo} />
         <TextField
           id="email"
-          placeholder="e-mail"
+          label="e-mail"
           name="email"
           margin="normal"
           autoComplete="off"
@@ -99,16 +99,20 @@ function Login() {
           onChange={onChange}
           sx={styles.textField}
         />
+
         <TextField
           id="senha"
           type={mostrarSenha ? "text" : "password"}
-          placeholder="senha"
+          label="senha"
           name="senha"
           margin="normal"
           autoComplete="off"
           value={usuario.senha}
           onChange={onChange}
-          sx={{ ...styles.textField, mt: 3 }}
+          sx={{
+            ...styles.textField,
+            mt: 3,
+          }}
           slotProps={{
             input: {
               endAdornment: (
@@ -196,15 +200,24 @@ function getStyles() {
         "&:hover fieldset": { border: "none" },
         "&.Mui-focused fieldset": { border: "none" },
       },
-      "& input::placeholder": {
-        fontSize: "17px",
-        color: "black",
+      "& .MuiOutlinedInput-input": {
+        color: "gray",
+        fontSize: "16px",
+      },
+      "& .MuiInputLabel-root": {
+        fontSize: "16px",
+        color: "gray",
+      },
+      "& .MuiInputLabel-shrink": {
+        fontSize: "18px",
+        marginTop: -1.39,
+        color: "white",
       },
       width: "35vh",
       height: "5.5vh",
       backgroundColor: "white",
       display: "flex",
-      border: "0px transparent",
+      border: 0,
       borderRadius: 4,
     },
     buttonLogin: {

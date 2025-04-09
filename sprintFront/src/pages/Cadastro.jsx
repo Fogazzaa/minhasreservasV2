@@ -113,7 +113,7 @@ function Cadastro() {
         <TextField
           id="nome"
           autoComplete="off"
-          placeholder="nome"
+          label="nome"
           name="nome"
           margin="normal"
           value={usuario.nome}
@@ -123,7 +123,7 @@ function Cadastro() {
         <TextField
           id="email"
           autoComplete="off"
-          placeholder="e-mail"
+          label="e-mail"
           name="email"
           margin="normal"
           value={usuario.email}
@@ -133,7 +133,7 @@ function Cadastro() {
         <TextField
           id="NIF"
           autoComplete="off"
-          placeholder="NIF"
+          label="NIF"
           type="number"
           name="NIF"
           margin="normal"
@@ -145,7 +145,7 @@ function Cadastro() {
           id="senha"
           type={mostrarSenha ? "text" : "password"}
           autoComplete="off"
-          placeholder="senha"
+          label="senha"
           name="senha"
           margin="normal"
           value={usuario.senha}
@@ -172,7 +172,7 @@ function Cadastro() {
         />
         <TextField
           id="confirmarSenha"
-          placeholder="confirmar-senha"
+          label="confirmar-senha"
           name="confirmarSenha"
           type={mostrarConfirmarSenha ? "text" : "password"}
           margin="normal"
@@ -261,15 +261,24 @@ function getStyles() {
         "&:hover fieldset": { border: "none" },
         "&.Mui-focused fieldset": { border: "none" },
       },
-      "& input::placeholder": {
-        fontSize: "17px",
-        color: "black",
+      "& .MuiOutlinedInput-input": {
+        color: "gray",
+        fontSize: "16px",
       },
-      width: { xs: "90%", sm: "70%", md: "35vh" },
+      "& .MuiInputLabel-root": {
+        fontSize: "16px",
+        color: "gray",
+      },
+      "& .MuiInputLabel-shrink": {
+        fontSize: "18px",
+        marginTop: -1.39,
+        color: "white",
+      },
+      width: "35vh",
       height: "5.5vh",
       backgroundColor: "white",
       display: "flex",
-      border: "0px transparent",
+      border: 0,
       borderRadius: 4,
     },
     buttonCadastro: {
