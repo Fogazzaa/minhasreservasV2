@@ -265,10 +265,6 @@ function getStyles() {
         color: "gray",
         fontSize: "16px",
       },
-      "& .MuiInputLabel-root": {
-        fontSize: "16px",
-        color: "gray",
-      },
       "& .MuiInputLabel-shrink": {
         fontSize: "18px",
         marginTop: -1.39,
