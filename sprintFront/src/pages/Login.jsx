@@ -209,6 +209,9 @@ function getStyles() {
         marginTop: -1.39,
         color: "white",
       },
+      "& .MuiInputLabel-root.Mui-focused": {
+        color: "#FFFFFF",
+      },
       width: "35vh",
       height: "5.5vh",
       backgroundColor: "white",
