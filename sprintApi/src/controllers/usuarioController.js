@@ -192,7 +192,7 @@ module.exports = class usuarioController {
   }
 
   static async getUsuarioByEmail(req, res) {
-    const { email } = req.body;
+    const { email } = req.query;
 
     // Valida se o ID foi fornecido
     const emailValidationError = usuarioValidator.validateUsuarioEmail(email);
@@ -223,7 +223,7 @@ module.exports = class usuarioController {
   }
 
   static async getUsuarioReservasByEmail(req, res) {
-    const { email } = req.body;
+    const { email } = req.query;
   
     const emailValidationError = usuarioValidator.validateUsuarioEmail(email);
     if (emailValidationError) {
