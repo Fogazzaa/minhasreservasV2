@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     marginBottom: 10,
-    fontSize: 17,
+    fontSize: 12,
     color: "gray",
   },
   buttonAtualizar: {
@@ -295,9 +295,8 @@ const styles = StyleSheet.create({
   },
   footer: {
     backgroundColor: "rgba(177, 16, 16, 1)",
-    width: "100%",
+    width: 1000,
     height: 60,
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     borderTopWidth: 7,
@@ -306,7 +305,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     color: "white",
-    fontSize: 10,
+    fontSize: 13,
   },
 });
 
