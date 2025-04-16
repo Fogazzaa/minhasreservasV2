@@ -14,6 +14,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import api from "../services/axios";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login() {
   const navigation = useNavigation();
@@ -23,12 +24,21 @@ export default function Login() {
     showSenha: true,
   });
 
+  const armazenarDados = async () => {
+    try {
+      await AsyncStorage.setItem('email', usuario.email);
+    } catch (erro) {
+      console.error('Erro ao armazenar dados:', erro);
+    }
+  };
+
   async function handleLogin() {
     await api.postLogin(usuario).then(
       (response) => {
         console.log(response.data.message);
         Alert.alert("OK", response.data.message);
         navigation.navigate("Principal");
+        armazenarDados();
       },
       (error) => {
         Alert.alert("Erro", error.response.data.error);
