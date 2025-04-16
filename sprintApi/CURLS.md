@@ -67,6 +67,22 @@ curl --location 'http://localhost:5000/reservas/v1/usuario/perfil/1' \
 ```
 
 ---
+#### - getUsuarioByEmail
+
+#### Retorna um usuário específico (pelo e-mail)
+```http
+GET /reservas/v1/usuario/email/perfil/reservas
+```
+##### Exemplo de requisição:
+```sh
+curl --location --request GET 'http://localhost:5000/reservas/v1/usuario/perfil/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email" : "joao.silva@docente.senai.br"
+}'
+```
+
+---
 #### - putUsuario
 
 #### Atualizar um usuário específico
@@ -107,6 +123,21 @@ GET /reservas/v1/usuario/perfil/{id}/reservas'
 ```sh
 curl --location 'http://localhost:5000/reservas/v1/usuario/perfil/1/reservas' \
 --header 'Content-Type: application/json'
+```
+
+### *Reservas do Usuário pelo (e-mail)*
+
+#### Retornar as reservas de um usuário específico
+```http
+GET /reservas/v1/usuario/email/perfil/reservas'
+```
+##### Exemplo de requisição:
+```sh
+curl --location --request GET 'http://localhost:5000/reservas/v1/usuario/email/perfil/reservas/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email" : "joao.silva@docente.senai.br"
+}'
 ```
 
 ## - *Reservas*

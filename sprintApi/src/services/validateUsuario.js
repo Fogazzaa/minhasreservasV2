@@ -104,4 +104,12 @@ module.exports = {
     }
     return null;
   },
+
+    // Valida se o ID do usuário foi fornecido
+    validateUsuarioEmail: function (email) {
+      if (!email) {
+        return { error: "Email do usuário é obrigatório" };
+      }
+      return null;
+    },
 };

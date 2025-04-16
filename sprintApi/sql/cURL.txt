@@ -43,6 +43,26 @@ curl --location 'http://localhost:5000/reservas/v1/usuario/perfil/1/reservas'
 
 -------------------------------------------------------------------------------------------------
 
+ - GET - USUARIOBYEMAIL:
+
+curl --location --request GET 'http://localhost:5000/reservas/v1/usuario/perfil/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email" : "joao.silva@docente.senai.br"
+}'
+
+-------------------------------------------------------------------------------------------------
+
+ - GET - RESERVASBYUSUARIOEMAIL:
+
+curl --location --request GET 'http://localhost:5000/reservas/v1/usuario/email/perfil/reservas/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email" : "joao.silva@docente.senai.br"
+}'
+
+-------------------------------------------------------------------------------------------------
+
  - PUT:
 
 curl --location --request PUT 'http://localhost:5000/reservas/v1/usuario/1' \
