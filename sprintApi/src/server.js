@@ -1,13 +1,19 @@
+require('dotenv').config(); // Carrega as variáveis do .env
+
 const app = require("./index");
 const cors = require("cors");
 
 const corsOptions = {
-    origin: '*', // qual o ip vai poder usar esses métodos, '*' = todos
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // métodos http permitidos
-    credentials: true, // permiti o uso de cookies e credenciais
-    optionsSucessStatus: 204, // define o método de resposta para o método option
+    origin: process.env.CORS_ORIGIN, // Usa a variável de ambiente
+    methods: process.env.CORS_METHODS, // Usa a variável de ambiente
+    credentials: process.env.CORS_CREDENTIALS === 'true', // Converte para booleano
+    optionsSucessStatus: parseInt(process.env.CORS_OPTIONS_SUCCESS_STATUS), // Converte para número
 };
 
 app.use(cors(corsOptions));
 
-app.listen(5000);
+const port = process.env.PORT || 5000; // Usa a variável de ambiente para a porta, ou 5000 por padrão
+
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port} \n`);
+});
