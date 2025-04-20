@@ -87,24 +87,32 @@ A Sprint API foi desenvolvida utilizando Node.js e Express, oferecendo endpoints
     npm i axios
   ```
 
+# Configuração do (`server.js`)
+
+## Configuração da conexão com `server.js`
+
+O servidor utiliza variáveis de ambiente definidas no .env para configurar CORS e a porta. Para configurar a conexão, CRIE e defina as variáveis no arquivo .env:
+
+```
+PORT=5000                         # Porta do servidor
+CORS_ORIGIN=*                     # Origem permitida (ex: http://localhost:3000)
+CORS_METHODS=GET,HEAD,POST        # Métodos permitidos
+CORS_CREDENTIALS=true             # Permitir cookies e headers
+CORS_OPTIONS_SUCCESS_STATUS=204   # Status para respostas OPTIONS
+```
+
 # Configuração do Banco de Dados e Conexão MySQL
 
 ## Configuração da Conexão com MySQL
 
-O projeto utiliza o pacote `mysql2` para gerenciar a conexão com o banco de dados MySQL. Para configurar a conexão, atualize o seguinte código armazenado em *(src->db->connect.js)*:
+O projeto utiliza o pacote mysql2 para gerenciar a conexão com o banco de dados MySQL. Para configurar a conexão, CRIE e defina as variáveis no arquivo .env:
 
-```javascript
-const mysql = require("mysql2");
-
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: "{Seu IP}",
-  user: "{Seu usuário SQL}",
-  password: "{Senha do seu usuário SQL}",
-  database: "rs",
-});
-
-module.exports = pool;
+```
+DB_HOST=localhost        # Endereço do banco de dados (ex: 127.0.0.1)
+DB_USER=root             # Usuário do banco de dados (ex: root)
+DB_PASSWORD=minha_senha  # Senha do banco de dados
+DB_NAME=rs               # Nome do banco de dados
+DB_PORT=3306             # Porta do MySQL
 ```
 
 ## Estrutura do Banco de Dados
