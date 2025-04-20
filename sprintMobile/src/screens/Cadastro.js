@@ -44,7 +44,7 @@ export default function Cadastro() {
       style={styles.background}
       resizeMode="cover"
     >
-      <View style={styles.container}>
+      <View style={styles.body}>
         <Header />
         <View style={styles.form}>
           <Image source={require("../img/logo.png")} style={styles.logo} />
@@ -119,16 +119,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  container: { width: "100%", justifyContent: "center", alignItems: "center" },
+  body: { width: "100%", justifyContent: "center", alignItems: "center", height: "83%" },
   form: {
-    width: "65%",
-    marginTop: 150,
-    marginBottom: 180,
-    minHeight: 100,
+    width: "70%",
+    height: "70%",
+    marginTop: "29%",
+    marginBottom:"29%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
-    padding: 30,
     backgroundColor: "rgba(255, 238, 238, 0.82)",
     borderRadius: 50,
   },
@@ -136,17 +134,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     resizeMode: "contain",
-    width: 210,
-    height: 55,
-    marginBottom: 30,
-    marginTop: 16,
+    width: "70%",
+    height: "11.4%",
+    marginBottom: "10%",
+    marginTop: "5%",
     borderRadius: 8,
     borderColor: "white",
-    borderWidth: 5,
+    borderWidth: 4,
   },
   input: {
-    width: 250,
-    height: 40,
+    width: "85%",
+    height: "8.5%",
     borderWidth: 0,
     marginBottom: 20,
     paddingHorizontal: 10,
@@ -160,12 +158,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     alignItems: "center",
-    width: "250",
+    width: "85%",
+    height: "8.5%",
     backgroundColor: "white",
     borderRadius: 12,
     marginBottom: 20,
     paddingHorizontal: 10,
-    height: 40,
   },
   buttonCadastrar: {
     backgroundColor: "rgb(250, 24, 24)",

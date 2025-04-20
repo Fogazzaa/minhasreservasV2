@@ -52,7 +52,7 @@ export default function Login() {
       style={styles.background}
       resizeMode="cover"
     >
-      <View style={styles.container}>
+      <View style={styles.body}>
         <Header />
         <View style={styles.form}>
           <Image source={require("../img/logo.png")} style={styles.logo} />
@@ -108,16 +108,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  container: { width: "100%", justifyContent: "center", alignItems: "center" },
+  body: { width: "100%", justifyContent: "center", alignItems: "center", height: "83%" },
   form: {
-    width: "65%",
-    minHeight: 180,
-    marginTop: 230,
-    marginBottom:230,
-    marginVertical: 100,
+    width: "70%",
+    height: "50%",
+    marginTop: "46%",
+    marginBottom:"46%",
     justifyContent: "center",
     alignItems: "center",
-    padding: 30,
     backgroundColor: "rgba(255, 238, 238, 0.82)",
     borderRadius: 50,
   },
@@ -125,19 +123,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     resizeMode: "contain",
-    width: 205,
-    height: 55,
-    marginBottom: 25,
-    marginTop: 16,
+    width: "70%",
+    height: "16%",
+    marginBottom: "10%",
+    marginTop: "5%",
     borderRadius: 8,
     borderColor: "white",
     borderWidth: 4,
   },
   inputEmail: {
-    width: 250,
-    height: 40,
-    borderWidth: 0,
-    marginBottom: 20,
+    width: "85%",
+    height: "12%",
+    marginBottom: "7%",
     paddingHorizontal: 10,
     borderRadius: 12,
     backgroundColor: "white",
@@ -148,22 +145,20 @@ const styles = StyleSheet.create({
   senhaContainer: {
     flexDirection: "row",
     alignItems: "center",
-    width: "250",
+    width: "85%",
     backgroundColor: "white",
     borderRadius: 12,
-    marginBottom: 20,
+    marginBottom: "5%",
     paddingHorizontal: 10,
-    height: 40,
+    height: "12%",
   },
   buttonEntrar: {
     backgroundColor: "rgb(250, 24, 24)",
     paddingVertical: 10,
     paddingHorizontal: 22,
     borderRadius: 8,
-    borderWidth: 0,
     alignItems: "center",
-    margin: 5,
-    marginBottom: 2,
+    marginTop: "3%",
   },
   textButtonEntrar: {
     fontSize: 16,
@@ -175,9 +170,8 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 20,
     borderRadius: 8,
-    borderWidth: 0,
     alignItems: "center",
-    marginTop: 10,
+    marginTop: "3%",
     color: "white",
   },
   textButtonToCadastro: {
