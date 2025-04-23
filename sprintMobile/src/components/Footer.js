@@ -1,4 +1,5 @@
-import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 
 function Footer() {
   return (
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  textDesenvolvido: { color: "white", fontWeight: "bold" },
+  textDesenvolvido: { color: "white", fontWeight: "bold", fontSize: 14 },
 });
 
 export default Footer;

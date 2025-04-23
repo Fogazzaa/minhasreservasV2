@@ -9,6 +9,8 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -44,69 +46,81 @@ export default function Cadastro() {
       style={styles.background}
       resizeMode="cover"
     >
-      <View style={styles.body}>
+      <View style={styles.container}>
         <Header />
-        <View style={styles.form}>
-          <Image source={require("../img/logo.png")} style={styles.logo} />
-          <TextInput
-            placeholder=" nome"
-            value={usuario.nome}
-            onChangeText={(value) => {
-              setUsuario({ ...usuario, nome: value });
-            }}
-            style={styles.input}
-          />
-          <TextInput
-            placeholder=" e-mail"
-            value={usuario.email}
-            onChangeText={(value) => {
-              setUsuario({ ...usuario, email: value });
-            }}
-            style={styles.input}
-          />
-          <TextInput
-            placeholder=" NIF"
-            value={usuario.NIF}
-            onChangeText={(value) => {
-              setUsuario({ ...usuario, NIF: value });
-            }}
-            style={styles.input}
-          />
-          <View style={styles.senhaForm}>
-            <TextInput
-              style={styles.inputSenha}
-              placeholder=" senha"
-              value={usuario.senha}
-              secureTextEntry={usuario.showSenha}
-              onChangeText={(value) => {
-                setUsuario({ ...usuario, senha: value });
-              }}
-            />
-            <TouchableOpacity
-              onPress={() =>
-                setUsuario({ ...usuario, showSenha: !usuario.showSenha })
-              }
-            >
-              <Ionicons
-                name={usuario.showSenha ? "eye-off" : "eye"}
-                size={24}
-                color="gray"
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <View style={styles.body}>
+            <View style={styles.form}>
+              <Image source={require("../img/logo.png")} style={styles.logo} />
+              <TextInput
+                placeholder=" nome"
+                value={usuario.nome}
+                onChangeText={(value) => {
+                  setUsuario({ ...usuario, nome: value });
+                }}
+                style={styles.input}
               />
-            </TouchableOpacity>
+              <TextInput
+                placeholder=" e-mail"
+                value={usuario.email}
+                onChangeText={(value) => {
+                  setUsuario({ ...usuario, email: value });
+                }}
+                style={styles.input}
+              />
+              <TextInput
+                placeholder=" NIF"
+                value={usuario.NIF}
+                onChangeText={(value) => {
+                  setUsuario({ ...usuario, NIF: value });
+                }}
+                style={styles.input}
+              />
+              <View style={styles.senhaForm}>
+                <TextInput
+                  style={styles.inputSenha}
+                  placeholder=" senha"
+                  value={usuario.senha}
+                  secureTextEntry={usuario.showSenha}
+                  onChangeText={(value) => {
+                    setUsuario({ ...usuario, senha: value });
+                  }}
+                />
+                <TouchableOpacity
+                  onPress={() =>
+                    setUsuario({ ...usuario, showSenha: !usuario.showSenha })
+                  }
+                >
+                  <Ionicons
+                    name={usuario.showSenha ? "eye-off" : "eye"}
+                    size={24}
+                    color="gray"
+                  />
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity
+                onPress={handleCadastro}
+                style={styles.buttonCadastrar}
+              >
+                <Text style={styles.textButtonCadastrar}>Cadastrar-se</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.buttonToLogin}
+                onPress={() => navigation.navigate("Login")}
+              >
+                <Text style={styles.textButtonToLogin}>Login</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <TouchableOpacity
-            onPress={handleCadastro}
-            style={styles.buttonCadastrar}
-          >
-            <Text style={styles.textButtonCadastrar}>Cadastrar-se</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonToLogin}
-            onPress={() => navigation.navigate("Login")}
-          >
-            <Text style={styles.textButtonToLogin}>Login</Text>
-          </TouchableOpacity>
-        </View>
+        </KeyboardAvoidingView>
         <Footer />
       </View>
     </ImageBackground>
@@ -119,12 +133,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  body: { width: "100%", justifyContent: "center", alignItems: "center", height: "83%" },
+  container: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+  },
+  body: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+
+  },
   form: {
     width: "70%",
-    height: "70%",
-    marginTop: "29%",
-    marginBottom:"29%",
+    height: "auto",
+    paddingVertical: 15,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(255, 238, 238, 0.82)",
@@ -135,16 +159,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     resizeMode: "contain",
     width: "70%",
-    height: "11.4%",
-    marginBottom: "10%",
-    marginTop: "5%",
+    height: "12%",
+    marginBottom: "8%",
+    marginTop: "2%",
     borderRadius: 8,
     borderColor: "white",
     borderWidth: 4,
   },
   input: {
     width: "85%",
-    height: "8.5%",
+    height: "9.5%",
     borderWidth: 0,
     marginBottom: 20,
     paddingHorizontal: 10,
@@ -152,14 +176,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   inputSenha: {
-    flex: 1
+    flex: 1,
   },
   senhaForm: {
     flexDirection: "row",
     alignItems: "center",
     alignItems: "center",
     width: "85%",
-    height: "8.5%",
+    height: "9.5%",
     backgroundColor: "white",
     borderRadius: 12,
     marginBottom: 20,
