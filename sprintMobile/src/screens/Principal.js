@@ -31,6 +31,12 @@ function Principal({ navigation }) {
   }, []);
 
   const listSalas = ({ item }) => (
+    <TouchableOpacity
+    style={[styles.rowButton, styles.rowButtonActive]}
+    onPress={() => {
+      console.log(`Linha ${item.nome} pressionada`);
+    }}
+  >
     <View style={styles.row}>
       <Text style={[styles.tableCell, styles.nome]}>{item.nome}</Text>
       <Text style={[styles.tableCell, styles.descricao]}>{item.descricao}</Text>
@@ -40,6 +46,7 @@ function Principal({ navigation }) {
         {item.capacidade}
       </Text>
     </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -164,6 +171,14 @@ const styles = StyleSheet.create({
   headerTipo: { width: 80, marginLeft: -5 },
   headerCapacidade: { width: 100, marginLeft: 1,},
 
+  rowButton:{
+    backgroundColor: '#808080'
+  },
+
+  rowButtonActive:{
+    backgroundColor: '#808080'
+  },
+  
   row: {
     flexDirection: "row",
     alignItems: "flex-start",
