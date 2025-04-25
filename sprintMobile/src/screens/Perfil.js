@@ -74,96 +74,97 @@ function Perfil() {
             <MaterialIcons
               name="exit-to-app"
               style={styles.IconeLogout}
-              size={30}
+              size={35}
             />
           </TouchableOpacity>
         </View>
-
-        <View style={styles.form}>
-          <Image source={logo} style={styles.logo} />
-          <TextInput
-            placeholder="nome"
-            editable={false}
-            value={usuario.nome || ""}
-            style={styles.textField}
-          />
-          <TextInput
-            placeholder="e-mail"
-            editable={false}
-            value={usuario.email || ""}
-            style={styles.textField}
-          />
-          <TextInput
-            placeholder="NIF"
-            editable={false}
-            value={usuario.NIF || ""}
-            style={styles.textField}
-          />
-
-          <View style={styles.passwordContainer}>
+        <View style={styles.body}>
+          <View style={styles.form}>
+            <Image source={logo} style={styles.logo} />
             <TextInput
-              secureTextEntry={!mostrarSenha}
-              placeholder="senha"
+              placeholder="nome"
               editable={false}
-              value={usuario.senha || ""}
-              style={{ ...styles.textField, marginTop: 16, flex: 1 }}
+              value={usuario.nome || ""}
+              style={styles.textField}
             />
-            <TouchableOpacity
-              onPress={() => setMostrarSenha((prev) => !prev)}
-              style={styles.visibilityButton}
-            >
-              <MaterialIcons
-                name={mostrarSenha ? "visibility-off" : "visibility"}
-                size={20}
-                color="gray"
+            <TextInput
+              placeholder="e-mail"
+              editable={false}
+              value={usuario.email || ""}
+              style={styles.textField}
+            />
+            <TextInput
+              placeholder="NIF"
+              editable={false}
+              value={usuario.NIF || ""}
+              style={styles.textField}
+            />
+
+            <View style={styles.passwordContainer}>
+              <TextInput
+                secureTextEntry={!mostrarSenha}
+                placeholder="senha"
+                editable={false}
+                value={usuario.senha || ""}
+                style={{ ...styles.textField, marginTop: 16, flex: 1 }}
               />
+              <TouchableOpacity
+                onPress={() => setMostrarSenha((prev) => !prev)}
+                style={styles.visibilityButton}
+              >
+                <MaterialIcons
+                  name={mostrarSenha ? "visibility-off" : "visibility"}
+                  size={20}
+                  color="gray"
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.selectContainer}>
+              <Picker
+                selectedValue={reservaSelecionada}
+                onValueChange={(itemValue) => {
+                  if (itemValue === "verTodas") {
+                    console.log("Ver todas as reservas");
+                  } else {
+                    setReservaSelecionada(itemValue);
+                  }
+                }}
+                style={styles.picker}
+              >
+                <Picker.Item
+                  label="Selecione uma reserva"
+                  value=""
+                  enabled={false}
+                />
+                {reservas.length > 0 ? (
+                  reservas.map((reserva) => (
+                    <Picker.Item
+                      key={reserva.id} // A chave única deve ser garantida aqui
+                      label={`${reserva.sala} - ${reserva.data}`}
+                      value={reserva.id}
+                    />
+                  ))
+                ) : (
+                  <Picker.Item label="Nenhuma reserva encontrada" value="" />
+                )}
+                <Picker.Item label="Ver todas as reservas" value="verTodas" />
+              </Picker>
+            </View>
+
+            <TouchableOpacity
+              style={styles.buttonAtualizar}
+              onPress={() => console.log("Atualizar Perfil")}
+            >
+              <Text style={styles.buttonText}>Atualizar Perfil</Text>
             </TouchableOpacity>
           </View>
-
-          <View style={styles.selectContainer}>
-            <Text style={styles.selectLabel}>Minhas Reservas</Text>
-            <Picker
-              selectedValue={reservaSelecionada}
-              onValueChange={(itemValue) => {
-                if (itemValue === "verTodas") {
-                  console.log("Ver todas as reservas");
-                } else {
-                  setReservaSelecionada(itemValue);
-                }
-              }}
-              style={styles.picker}
-            >
-              <Picker.Item
-                label="Selecione uma reserva"
-                value=""
-                enabled={false}
-              />
-              {reservas.length > 0 ? (
-                reservas.map((reserva) => (
-                  <Picker.Item
-                    key={reserva.id} // A chave única deve ser garantida aqui
-                    label={`${reserva.sala} - ${reserva.data}`}
-                    value={reserva.id}
-                  />
-                ))
-              ) : (
-                <Picker.Item label="Nenhuma reserva encontrada" value="" />
-              )}
-              <Picker.Item label="Ver todas as reservas" value="verTodas" />
-            </Picker>
-          </View>
-
-          <TouchableOpacity
-            style={styles.buttonAtualizar}
-            onPress={() => console.log("Atualizar Perfil")}
-          >
-            <Text style={styles.buttonText}>Atualizar Perfil</Text>
-          </TouchableOpacity>
         </View>
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            &copy; Desenvolvido por: Vinicius Fogaça, Maria Júlia e Maria Fernanda
+            &copy; Desenvolvido por: Vinicius Fogaça, Maria Júlia e Maria
+            Fernanda
           </Text>
         </View>
       </ImageBackground>
@@ -172,38 +173,29 @@ function Perfil() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    minHeight: "100%",
-    width: "100%",
-    backgroundColor: "#f0f0f0",
-  },
+
   background: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
+  container: {
+    flex: 1,
+  },
   header: {
     backgroundColor: "rgba(177, 16, 16, 1)",
     width: "100%",
-    height: 80,
+    height: "8%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-end",
-    borderBottomWidth: 7,
+    borderBottomWidth: 3,
     borderBottomColor: "white",
   },
   buttonToPrincipal: {
     marginRight: 20,
-    borderRadius: 25,
-    backgroundColor: "darkred",
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 4,
-    borderColor: "white",
-    padding: 7,
   },
   IconeLogout: {
     color: "white",
@@ -212,29 +204,32 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     resizeMode: "contain",
-    width: 280,
-    height: 75,
+    width: "100%",
+    height: "13%",
     marginBottom: 25,
     marginTop: 16,
     borderRadius: 8,
     borderColor: "white",
     borderWidth: 6,
   },
+  body:{
+    width: "100%",
+    height: "84%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   form: {
-    marginTop: 100,
-    marginBottom:100,
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "rgb(206, 206, 206)",
-    paddingHorizontal: 24,
-    paddingTop: 36,
-    paddingBottom: 28,
+    backgroundColor: "rgb(222, 222, 222)",
+    paddingVertical: "5%",
+    paddingHorizontal: "8%",
     borderRadius: 10,
-    width: "90%",
+    width: "75%",
   },
   textField: {
-    width: 350,
-    height: 55,
+    width: "100%",
+    height: "8%",
     backgroundColor: "white",
     borderWidth: 1,
     borderColor: "transparent",
@@ -248,31 +243,24 @@ const styles = StyleSheet.create({
   passwordContainer: {
     flexDirection: "row",
     alignItems: "center",
-    width: 350,
-    height: 55,
+    width: "100%",
+    height: "8%",
   },
   visibilityButton: {
     padding: 10,
-    position:"absolute",
-    right:15,
-    top:10
+    position: "absolute",
+    right: 15,
+    top: 10,
   },
   selectContainer: {
-    width: 300,
+    width: "100%",
     marginTop: 16,
-  },
-  selectLabel: {
-    fontSize: 16,
-    color: "gray",
-    marginBottom: 8,
   },
   picker: {
     width: "100%",
     height: 55,
     backgroundColor: "white",
-    borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 4,
     paddingLeft: 10,
     paddingRight: 10,
     marginBottom: 10,
@@ -295,13 +283,12 @@ const styles = StyleSheet.create({
   },
   footer: {
     backgroundColor: "rgba(177, 16, 16, 1)",
-    width: 1000,
-    height: 60,
+    width: "100%",
+    height: "8%",
     alignItems: "center",
     justifyContent: "center",
-    borderTopWidth: 7,
+    borderTopWidth: 3,
     borderTopColor: "white",
-    marginTop: 20,
   },
   footerText: {
     color: "white",
