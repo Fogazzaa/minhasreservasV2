@@ -62,7 +62,7 @@ module.exports = class ReservaController {
           });
         } else {
           return res.status(400).json({
-            error: "Não há horários disponíveis para uma reserva de 50 minutos neste dia."
+            error: "Não há horários disponíveis para uma reserva de 1 Hora neste dia."
           });
         }
       }
@@ -137,7 +137,7 @@ module.exports = class ReservaController {
       if (conflitoResult.conflito) {
         const { inicioDisponivel, fimDisponivel } = conflitoResult;
         return res.status(400).json({
-          error: `A sala já está reservada neste horário. O próximo horário disponível é de ${validateReserva.formatarHorario(inicioDisponivel)} até ${validateReserva.formatarHorario(fimDisponivel)}`
+          error: `A sala já está reservada neste horário. O próximo horário disponível é de ${formatarHorario(inicioDisponivel)} até ${formatarHorario(fimDisponivel)}`
         });
       }
 
