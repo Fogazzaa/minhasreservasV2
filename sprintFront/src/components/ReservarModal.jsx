@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Box, Typography, Button, TextField } from "@mui/material";
-import {
-  LocalizationProvider,
-  DatePicker,
-  TimePicker,
-} from "@mui/x-date-pickers";
+import { LocalizationProvider, DatePicker, TimePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { ptBR } from "date-fns/locale";
 import api from "../services/axios";
 import { getToday } from "../utils/dateUtils";
 import CustomModal from "./CustomModal";
@@ -16,16 +13,10 @@ export default function ModalReservar({ isOpen, onClose, idSala }) {
 
   const [data, setData] = useState(new Date());
   const [horaInicio, setHoraInicio] = useState(new Date());
-  const [horaFim, setHoraFim] = useState(
-    new Date(new Date().getTime() + 60 * 60 * 1000)
-  );
+  const [horaFim, setHoraFim] = useState(new Date(new Date().getTime() + 60 * 60 * 1000));
   const [modalVisible, setModalVisible] = useState(false);
-  const [modalInfo, setModalInfo] = useState({
-    type: "success",
-    title: "",
-    message: "",
-  });
-  const [idUsuario, setIdUsuario] = useState(localStorage.getItem("idUsuario")); // Pega diretamente do localStorage
+  const [modalInfo, setModalInfo] = useState({ type: "success", title: "", message: "" });
+  const [idUsuario] = useState(localStorage.getItem("idUsuario"));
   const navigate = useNavigate();
 
   function ajustarHoraFim() {
@@ -40,15 +31,13 @@ export default function ModalReservar({ isOpen, onClose, idSala }) {
   }
 
   async function handleReserva() {
-    if (horaFim <= horaInicio) {
-      ajustarHoraFim();
-    }
+    if (horaFim <= horaInicio) ajustarHoraFim();
 
     const reserva = {
       data: data.toISOString().split("T")[0],
       hora_inicio: formatarHoraComSegundosZero(horaInicio),
       hora_fim: formatarHoraComSegundosZero(horaFim),
-      fk_id_usuario: idUsuario, // Usa diretamente do localStorage
+      fk_id_usuario: idUsuario,
       fk_id_sala: idSala,
     };
 
@@ -79,34 +68,24 @@ export default function ModalReservar({ isOpen, onClose, idSala }) {
   }
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
       <Modal open={isOpen} onClose={onClose}>
         <Box sx={styles.modalBox}>
-          <Typography variant="h6" sx={styles.title}>
-            Reservar
-          </Typography>
+          <Typography variant="h6" sx={styles.title}>Reservar</Typography>
 
-          <Typography variant="subtitle2" sx={styles.inputTitle}>
-            Data
-          </Typography>
+          <Typography variant="subtitle2" sx={styles.inputTitle}>Data</Typography>
           <DatePicker
             value={data}
-            sx={styles.input}
-            onChange={(newValue) => {
-              if (newValue) setData(newValue);
-            }}
+            onChange={(newValue) => newValue && setData(newValue)}
             minDate={getToday()}
-            renderInput={(params) => (
-              <TextField fullWidth margin="normal" {...params} />
-            )}
+            format="dd-MM-yyyy"
+            sx={styles.input}
+            renderInput={(params) => <TextField fullWidth margin="normal" {...params} />}
           />
 
-          <Typography variant="subtitle2" sx={styles.inputTitle}>
-            Hora de Início
-          </Typography>
+          <Typography variant="subtitle2" sx={styles.inputTitle}>Hora de Início</Typography>
           <TimePicker
             value={horaInicio}
-            sx={styles.input}
             onChange={(newValue) => {
               if (newValue) {
                 const ajustada = new Date(newValue);
@@ -116,17 +95,13 @@ export default function ModalReservar({ isOpen, onClose, idSala }) {
               }
             }}
             ampm={false}
-            renderInput={(params) => (
-              <TextField fullWidth margin="normal" {...params} />
-            )}
+            sx={styles.input}
+            renderInput={(params) => <TextField fullWidth margin="normal" {...params} />}
           />
 
-          <Typography variant="subtitle2" sx={styles.inputTitle}>
-            Hora de Fim
-          </Typography>
+          <Typography variant="subtitle2" sx={styles.inputTitle}>Hora de Fim</Typography>
           <TimePicker
             value={horaFim}
-            sx={styles.input}
             onChange={(newValue) => {
               if (newValue) {
                 const ajustada = new Date(newValue);
@@ -135,9 +110,8 @@ export default function ModalReservar({ isOpen, onClose, idSala }) {
               }
             }}
             ampm={false}
-            renderInput={(params) => (
-              <TextField fullWidth margin="normal" {...params} />
-            )}
+            sx={styles.input}
+            renderInput={(params) => <TextField fullWidth margin="normal" {...params} />}
           />
 
           <Box sx={styles.buttonContainer}>
@@ -188,6 +162,7 @@ function getStyles() {
       boxShadow: 24,
       p: 4,
       borderRadius: 2,
+      border: "none"
     },
     title: {
       fontWeight: "bold",
@@ -206,7 +181,7 @@ function getStyles() {
     },
     buttonContainer: {
       mt: 2,
-      mb:2,
+      mb: 2,
       display: "flex",
       justifyContent: "space-between",
     },
